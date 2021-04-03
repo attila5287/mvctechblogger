@@ -8,12 +8,17 @@
         <meta name="Description"
             content="Full Stack Tech Blog with Express framework, mySQL DB, Sequelize ORM and Bcrypt/Session for Authentication; deployed on Heroku" />
         <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <link rel="stylesheet" href="css/united/bootstrap.css">
+        
+        <link rel="stylesheet" type="text/css"
+        href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+        crossorigin="anonymous" />
+
         <title>Tech Blog</title>
     </head>
     <style>
-        body{
+        html, body{
             font-size: 1rem;
         }
         a.pro:hover,
@@ -78,6 +83,9 @@
         .border-med {
             border-width: 0.25rem;
         }
+        .border-thk {
+            border-width: 0.5rem;
+        }
 
         .opac-50 {
             opacity: 70%;
@@ -98,52 +106,92 @@
             
             background-color: #027e33;;
         }
-
+        .nav-item {
+            padding: 0px 0px 0px 0px;
+            margin: 0px 0px 0px 0px;
+        }
         .nav-item .fas {
-            font-size:2rem;
+            font-size:1.25rem;
         }
-        .nav-item hr {
-            margin: 0 0 0 0;
+        .text-ubu{
+            font-family: Ubuntu;
         }
-        .nav
     </style>
 
     <body class="bg-body">
-        <nav class="navbar navbar-expand navbar-dark bg-primary text-light text-xl py-1">
-            <ul class="nav navbar-nav">
-                <li class="nav-item disabled bg-light rounded-xl p-1">
-                    <img alt="@attila5287"
-                        src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4"
-                        class="rounded-xl my-0 p-0" width="36" height="36" />
-                </li>
-                <li class="nav-item text-2xl text-dark">
-                    <a class="nav-link" href="https://mvctechblogger.herokuapp.com">
-                    <b class="text-dark text-md border-top border-dark border-med pt-0">MVC</b>
+        <header>
+        <nav class="navbar navbar-expand navbar-dark bg-primary text-light  p-0 m-0">
+            <ul class="nav navbar-nav p-0 m-0">
+                <li class="nav-item text-lg">
+                    <a class="nav-link px-0 mx-1 text-dark" href="https://mvctechblogger.herokuapp.com">
                     Tech<i class="fab fa-bimobject mx-0 text-light bg-dark p-1 rounded-lg"></i><u class="">logger</u>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">
-                    <i class="fas fa-home"></i>
+                    <a class="nav-link px-0 mx-1" href="/">
+                    <i class="fas fa-rss"></i>
+                     <span class="text-ubu">Blogs</span>
                     </a>
-                    <hr>
-                    <b class="nav_text">Home</b>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link px-0 mx-1" href="/dashboard/">
+                    <i class="fas fa-tachometer-alt"></i>
+                    </a>
+                </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link px-0 mx-1 dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#tab1Id">    <i class="fas fa-file-signature"></i> User Posts</a>
+                    <a class="dropdown-item" href="#tab2Id">    <i class="fas fa-comment-dots"></i> User Comments</a>
+                    <a class="dropdown-item" href="#tab3Id">
+                        <i class="fas fa-envelope"></i> 
+                        Received
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#tab4Id">
+                        <i class="fas fa-edit"></i> New Post</a>
+                </div>
+            </li>                
+                <li class="nav-item">
+                    <a class="nav-link px-0 mx-1" href="/">
+                    <i class="fas fa-sign-in-alt"></i>
+                     <span class="text-ubu">Login</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-0 mx-1" href="/">
+                    <i class="fas fa-user-plus"></i>
+                     <span class="text-ubu">Signup</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-0 mx-1" href="/">
+                    <i class="fas fa-sign-out-alt"></i>
+                     <span class="text-ubu">Logout</span>
+                    </a>
+                </li>
+
             </ul>
         </nav>
-    <p class="text-left ml-2 mt-1">powered by
-        <i class="text-2xl fab fa-node bg-green text-light rounded-lg px-1 py-0"></i>
-        <i class="text-2xl fab fa-npm bg-danger text-light rounded-lg px-1 py-0"></i>
-         Express, Sequelize, MySQL
-    </p>
+        </header>
 
-
+        <footer class="footer container-fluid footer text-center m-0 p-0 text-ubu fixed-bottom bg-dark text-secondary" >
+        <img alt="@attila5287" src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4" class="rounded-up bg-light p-1 m-0" width="40px" height="40px" />
+            <small><i>powered by: </i></small>
+            <i class="text-xl fab fa-node bg-green text-light rounded-lg px-1 py-0"></i>
+            <i class="text-lg fab fa-npm bg-danger text-light rounded-lg px-1 py-0"></i>
+            <span class="text-sm font-italic"><b>
+                <i class="fas fa-server"></i>
+                Express, 
+                <i class="fas fa-database"></i>
+                Sequelize, MySQL</b></span>
+        </footer>
         <main class="mini">
 
             {{{ body }}}
 
         </main>
-
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js">
         </script>
