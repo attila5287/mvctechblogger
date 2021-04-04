@@ -157,21 +157,11 @@
                         </a>
                     </li>
                     
-                    {{#if logged_in}}
                     <li class="nav-item">
                         <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}">
                             <i class="fas fa-tachometer-alt"></i>
                         </a>
                     </li>
-                    {{else}}
-
-                    <li class="nav-item">
-                        <a class="nav-link disabled px-0 mx-1" href="/dashboard/{{user_id}}">
-                            <i class="fas fa-lock"></i>
-                        </a>
-                    </li>
-                    
-                    {{/if}}
 
 
 
@@ -215,11 +205,13 @@
                 </ul>
             </nav>
         </header>
-        <main class="mini">  {{{ body }}}  </main>
+        <main class="mini">
+              {{{ body }}}
+        </main>
 
 
         <footer
-            class="footer container-fluid footer text-center m-0 mt-5 p-0 text-ubu fixed-bottom bg-dark text-secondary">
+            class="mt-5 footer container-fluid footer text-center m-0 mt-5 p-0 text-ubu fixed-bottom bg-dark text-secondary">
             <img alt="@attila5287"
                 src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4"
                 class="rounded-up bg-light p-1 m-0" width="40px" height="40px" />
@@ -237,9 +229,9 @@
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
         </script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js">
-        </script>
+            <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js">
+    </script>
     </body>
 
 </html>

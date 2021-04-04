@@ -6,17 +6,29 @@ const { User, Post, Reply, Category, Usercat } = require('../models');
 
 // router.use('/api', apiRoutes);
 // We find all dishes in the db and set the data equal to dishData
-router.get('/dashboard/', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
 
-  const categories_model = await Category.findAll( { include: { all: true } } ).catch( e => console.log( e ) );
+  const cat_models = await Category.findAll({ include: { all: true } }).catch(
+    (err) => {
+      res.json(err);
+    }
+  );
+
+  const cats = cat_models.map((p) => p.get({ plain: true }));
+  // const cat = categories_model.get( { plain: true } );
+  const user_model = await User.findByPk( 1 ).catch( e => console.log( e ) );
   
-  const user_model = await User.findByPk( 1, { include: { all: true } } ).catch( e => console.log( e ) ).catch( e => console.log( e ) );
-  
-  const categories = await categories_model.get( { plain: true } ).catch( e => console.log( e ) );
-  
-  const user = await user_model.get( { plain: true } ).catch( e => console.log( e ) );
-  
-  res.render('dashboard', { user, categories,logged_in: req.session.logged_in,  user_id: req.session.user_id, });
+  const user = user_model.get( { plain: true } );
+  const post_topics = [
+    {value : 1 ,  option :"Question about how-to-do?" },
+    {value : 2 ,  option :"Ask about general opinion" },
+    {value : 3 ,  option :"Tips-n-Tricks from masters" },
+    {value : 4 ,  option :"Ask to the masters" },
+    {value : 5 ,  option :"Fun facts..." },
+    {value : 6 ,  option :"Soft-topic" },
+    {value : 7 ,  option :"None of the above" },
+  ];
+  res.render('dashboard', { user , cats, post_topics});
 });
 
 // route to get all dishes
