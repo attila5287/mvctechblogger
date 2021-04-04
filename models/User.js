@@ -27,7 +27,7 @@ User.init(
     img_url: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'asd',
+      defaultValue: 'https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/default.png',
     },
     email: {
       type: DataTypes.STRING,

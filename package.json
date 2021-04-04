@@ -2,7 +2,7 @@
   "name": "mvctechblogger",
   "version": "1.0.0",
   "description": "develop a tech blog with Model View Controller app structure, Sequelize ORM and Express Web Framework",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

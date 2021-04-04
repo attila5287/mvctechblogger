@@ -1,0 +1,23 @@
+[
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/3.jpg" ,  "name" :  "Marian Baldwin" , "password" : "test1234"  , "gender" : "m" , "email" : "m.Baldwin@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/2.jpg" ,  "name" :  "Rita Briggs" , "password" : "test1234"  , "gender" : "m" , "email" : "r.Briggs@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/4.jpg" ,  "name" :  "Jay Becker" , "password" : "test1234"  , "gender" : "m" , "email" : "j.Becker@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/4.jpg" ,  "name" :  "Sadie Love" , "password" : "test1234"  , "gender" : "m" , "email" : "s.Love@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/8.jpg" ,  "name" :  "Wallace Buchanan" , "password" : "test1234"  , "gender" : "m" , "email" : "w.Buchanan@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/12.jpg" ,  "name" :  "Jerry Obrien" , "password" : "test1234"  , "gender" : "m" , "email" : "j.Obrien@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/13.jpg" ,  "name" :  "Cameron Steele" , "password" : "test1234"  , "gender" : "m" , "email" : "c.Steele@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/12.jpg" ,  "name" :  "Kristy Patrick" , "password" : "test1234"  , "gender" : "m" , "email" : "k.Patrick@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/6.jpg" ,  "name" :  "Salvatore Griffith" , "password" : "test1234"  , "gender" : "m" , "email" : "s.Griffith@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/f/18.jpg" ,  "name" :  "Louis Pittman" , "password" : "test1234"  , "gender" : "m" , "email" : "l.Pittman@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/14.jpg" ,  "name" :  "Larry Thompson" , "password" : "test1234"  , "gender" : "m" , "email" : "l.Thompson@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/14.jpg" ,  "name" :  "Fredrick Fowler" , "password" : "test1234"  , "gender" : "m" , "email" : "f.Fowler@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/8.jpg" ,  "name" :  "Amos Hunter" , "password" : "test1234"  , "gender" : "m" , "email" : "a.Hunter@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/2.jpg" ,  "name" :  "Jeffery Wallace" , "password" : "test1234"  , "gender" : "m" , "email" : "j.Wallace@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/4.jpg" ,  "name" :  "Chris Richardson" , "password" : "test1234"  , "gender" : "m" , "email" : "c.Richardson@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/17.jpg" ,  "name" :  "Roderick Fisher" , "password" : "test1234"  , "gender" : "m" , "email" : "r.Fisher@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/16.jpg" ,  "name" :  "Forrest Pierce" , "password" : "test1234"  , "gender" : "m" , "email" : "f.Pierce@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/15.jpg" ,  "name" :  "Terrence Curtis" , "password" : "test1234"  , "gender" : "m" , "email" : "t.Curtis@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/6.jpg" ,  "name" :  "Elbert Lawson" , "password" : "test1234"  , "gender" : "m" , "email" : "e.Lawson@blog.com" },
+{ "img_url"  : "https://raw.githubusercontent.com/attila5287/mvctechblogger/main/Assets/user_images/m/17.jpg" ,  "name" :  "Jake Green" , "password" : "test1234"  , "gender" : "m" , "email" : "j.Green@blog.com" }
+
+]

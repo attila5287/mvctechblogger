@@ -14,9 +14,12 @@ Post.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue : "A new blog title"
     },
     content: {
       type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue : "A new blog content"
     },
     date_created: {
       type: DataTypes.DATE,
@@ -26,7 +29,7 @@ Post.init(
     category_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'category',
         key: 'id',
       },
     },
@@ -43,7 +46,7 @@ Post.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Post',
+    modelName: 'post',
   }
 );
 
