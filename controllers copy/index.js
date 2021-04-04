@@ -2,14 +2,14 @@ const withAuth = require('../utils/auth');
 // const path = require( 'path' );
 const router = require('express').Router();
 const apiRoutes = require('./api');
-const { User, Post, Reply, Category } = require('../models');
+const { Project, User } = require('../models');
 
 router.use('/api', apiRoutes);
 
 // route to get all dishes
 router.get('/', async (req, res) => {
   // We find all dishes in the db and set the data equal to dishData
-  const proData = await Post.findAll({ include: { all: true } }).catch(
+  const proData = await Project.findAll({ include: { all: true } }).catch(
     (err) => {
       res.json(err);
     }
@@ -46,19 +46,19 @@ router.get( '/signup', ( req, res ) => {
   res.render('signup');
 });
 
-router.get('/new_Post', withAuth, (req, res) => {
-  res.render('new_Post',{ logged_in: req.session.logged_in, user_id: req.session.user_id,});
+router.get('/new_project', withAuth, (req, res) => {
+  res.render('new_project',{ logged_in: req.session.logged_in, user_id: req.session.user_id,});
 });
 
-router.get('/Posts/:id', withAuth, async (req, res) => {
-  const pro_model = await Post.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
+router.get('/projects/:id', withAuth, async (req, res) => {
+  const pro_model = await Project.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
   // res.json( pro.get( { plain: true } ) );
 
   const pro = pro_model.get( { plain: true } )
 
   const user_model = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
   const user = user_model.get( { plain: true } );
-  res.render('Post', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
+  res.render('project', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
 
 });
 
@@ -83,7 +83,7 @@ router.get('/profile/:id',withAuth, async (req, res) => {
 
 router.get('/pros', async (req, res) => {
   try {
-    const pros = await Post.findAll({ include: { all: true } });
+    const pros = await Project.findAll({ include: { all: true } });
     // res.status( 200 ).json( pros );
     const all = pros.map((p) => p.get({ plain: true }));
     res.status(200).json(all);

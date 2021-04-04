@@ -1,7 +1,8 @@
 // import models
-const User = require( 'User' );
-const Post = require( 'Post' );
-const Reply = require('Reply');
+const User = require( './User' );
+const Post = require( './Post' );
+const Reply = require('./Reply');
+const Category = require( './Category' );
 require( '../config/connection' )
 
 // Products belongsTo Category
