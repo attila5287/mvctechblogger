@@ -3,6 +3,7 @@ const User = require( './User' );
 const Post = require( './Post' );
 const Reply = require('./Reply');
 const Category = require( './Category' );
+const UserCategory = require('./UserCategory');
 require( '../config/connection' )
 
 Reply.belongsTo(Post,{
@@ -40,6 +41,17 @@ User.hasMany( Reply, {
   onDelete:'CASCADE'
 });
 
+// Products belongToMany Tags (through ProductTag)
+User.belongsToMany(Category, {
+  through: UserCategory,
+  foreignKey: 'user_id'
+})
+
+// Tags belongToMany Products (through ProductTag)
+Category.belongsToMany(User, {
+  through: UserCategory,
+  foreignKey: 'category_id',
+});
 
 // Products belongsTo Category
 
@@ -48,4 +60,5 @@ module.exports = {
   Post,
   Reply,
   Category,
+  UserCategory,
 };

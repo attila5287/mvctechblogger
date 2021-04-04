@@ -8,8 +8,11 @@
 
     <div class="card bg-primary rounded-2xl mx-0 border-0">
         <div class="card-header pt-0 text-right font-weight-bold">
-            <i class="fab fa-bimobject text-2xl fa-pull-left m-1"></i>
-            {{p.category.category_name}}</div>
+            <i class="fab fa-bimobject text-2xl text-light fa-pull-left m-1"></i>
+            <a href="post/{{p.id}}" class="text-light ">
+            {{p.category.category_name}}
+            </a>
+            </div>
         <img class="card-img-top" src="{{p.user.img_url}}" alt="post-author">
         <div class="card-body bg-light">
             <div class="card-text text-right">
@@ -22,31 +25,33 @@
                 </span>
             </div>
 
-            <h4 class="card-title text-ubu text-primary font-weight-bold">{{p.title}}
-            </h4>
-            <p class="card-text text-ubu">{{p.content}}</p>
+            <h6 class="card-title text-ubu text-dark font-weight-bold">
+                <a href="/post/{{p.id}}">  {{p.title}}  </a>
+            </h6>
+            <small class="card-text text-ubu">{{p.content}}</small>
         </div>
         {{#if p.replies}}
         <div class="card-footer text-right py-0">
-            <button class="btn btn-primary" type="button" data-toggle="collapse"
+            <button class="btn btn-primary p-0" type="button" data-toggle="collapse"
                 data-target="#replies_for_post_{{p.id}}" aria-expanded="false"
                 aria-controls="replies_for_post_{{p.id}}">
+                <b class="text-sm">Show/Hide</b>
                 <i class="far fa-comment-dots text-2xl"></i>
-                <small>Show/Hide Comments</small>
             </button>
             {{#each p.replies as |c|}}
+            {{/each}}
+        </div>
+
             <div class="text-right collapse" id="replies_for_post_{{p.id}}">
                 <i class="text-2xl far fa-comment-dots fa-pull-left"></i>
-                <p class="text-sm">
+                <p class="text-sm text-dark">
                     {{c.comment}}
                 </p>
             </div>
-            {{/each}}
-        </div>
         {{else}}
-        <div class="card-footer text-center">
-            <i class="fas fa-comment-slash"></i>
-            <small>No comments yet...</small>
+        <div class="card-footer py-1 text-right">
+            <i class="fas fa-comment-slash text-reg fa-pull-left"></i>
+            <small class="">No comments yet</small>
         </div>
         {{/if}}
 </div>
