@@ -1,10 +1,10 @@
 const withAuth = require('../utils/auth');
 // const path = require( 'path' );
 const router = require('express').Router();
-const apiRoutes = require('./api');
+// const apiRoutes = require('./api');
 const { User, Post, Reply, Category } = require('../models');
 
-router.use('/api', apiRoutes);
+// router.use('/api', apiRoutes);
 
 // route to get all dishes
 router.get('/', async (req, res) => {
