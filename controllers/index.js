@@ -5,6 +5,19 @@ const router = require('express').Router();
 const { User, Post, Reply, Category, Usercat } = require('../models');
 
 // router.use('/api', apiRoutes);
+// We find all dishes in the db and set the data equal to dishData
+router.get('/dashboard/', async (req, res) => {
+
+  const categories_model = await Category.findAll( { include: { all: true } } ).catch( e => console.log( e ) );
+  
+  const user_model = await User.findByPk( 1, { include: { all: true } } ).catch( e => console.log( e ) ).catch( e => console.log( e ) );
+  
+  const categories = await categories_model.get( { plain: true } ).catch( e => console.log( e ) );
+  
+  const user = await user_model.get( { plain: true } ).catch( e => console.log( e ) );
+  
+  res.render('dashboard', { user, categories,logged_in: req.session.logged_in,  user_id: req.session.user_id, });
+});
 
 // route to get all dishes
 router.get('/json', async (req, res) => {

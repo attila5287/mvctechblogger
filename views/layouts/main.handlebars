@@ -156,11 +156,25 @@
                             <span class="text-ubu">Home</span>
                         </a>
                     </li>
+                    
+                    {{#if logged_in}}
                     <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/dashboard/">
+                        <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}">
                             <i class="fas fa-tachometer-alt"></i>
                         </a>
                     </li>
+                    {{else}}
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled px-0 mx-1" href="/dashboard/{{user_id}}">
+                            <i class="fas fa-lock"></i>
+                        </a>
+                    </li>
+                    
+                    {{/if}}
+
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link px-0 mx-1 dropdown-toggle" data-toggle="dropdown"
                             href="#" role="button" aria-haspopup="true"

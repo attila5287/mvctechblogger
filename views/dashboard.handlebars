@@ -1,5 +1,26 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+ `post` 
+  `title` varchar(255) NOT NULL DEFAULT 'A new blog title',
+  `content` varchar(255) NOT NULL DEFAULT 'A new blog content',
+  `date_created` datetime NOT NULL,
+  `category_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+<div class="form-group">
+  <label for="category_id"></label>
+  <select class="custom-select" name="category_id" id="category_id">
+    <option></option>
+    <option></option>
+    <option></option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="title">Blog Post Title</label>
+  <input type="text" name="title" class="form-control form-control-dark" placeholder="A new blog title" >
+</div>
+<div class="form-group">
+  <label for="title">Blog Post Content</label>
+  <input type="text" name="content" class="form-control form-control-dark" placeholder="A new blog content" >
+</div>
+<div class="form-group">
+  <label for="title">Blog Post Content</label>
+  <input type="text" name="content" class="form-control form-control-dark" placeholder="A new blog content" disabled>
+</div>
