@@ -27,10 +27,22 @@ User.hasMany(Post,{
   onDelete:'CASCADE'
 });
 
+// Products belongsTo Category
+Post.belongsTo(Category,{
+  foreignKey:'category_id',
+  onDelete:'CASCADE'
+});
+
+// Categories have many Products
+Category.hasMany(Post,{
+  foreignKey:'category_id',
+  onDelete:'CASCADE'
+});
 
 
 module.exports = {
   User,
   Post,
   Reply,
+  Category,
 };
