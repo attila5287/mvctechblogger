@@ -1,1 +1,40 @@
-<h1>All</h1>
+<h1>
+    <i class="fas fa-rss"></i>
+    All Posts</h1>
+
+<div class="card-columns">
+
+{{#each all as  |p|}}
+
+    <div class="card bg-primary rounded-2xl mx-0 border-0">
+        <h4 class="card-header pt-0 text-center font-weight-bold">{{p.category.category_name}}</h4>
+        <img class="card-img-top" src="{{p.user.img_url}}" alt="post-author">
+        <div class="card-body bg-light">
+        <div class="card-text text-right">
+            <i class="fas fa-calendar"> </i>
+            {{format_date p.date_created}}
+                    <span class="text-right font-weight-bold font-italic text-sm">
+                        by
+                        
+                    <i class="fas fa-user"> </i>
+                        {{p.user.name }}
+                    </span>
+        </div>
+
+            <h4 class="card-title text-ubu text-primary font-weight-bold">{{p.title}}
+            </h4>
+            <p class="card-text text-ubu">{{p.content}}</p>
+        </div>
+    <div class="card-footer text-right"
+    >
+    {{#each p.reply as |c|}}
+    <div class="d-flex flex-row justify-content-between">
+        <img class="img-thumbnail" src="{{c.img_url}}" alt="post-author">
+        {{c.comment}}
+    </div>
+    {{/each}}
+    </div>
+    </div>
+
+{{/each}}
+</div>

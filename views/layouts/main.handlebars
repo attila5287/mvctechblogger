@@ -7,20 +7,21 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="Description"
             content="Full Stack Tech Blog with Express framework, mySQL DB, Sequelize ORM and Bcrypt/Session for Authentication; deployed on Heroku" />
-        <link rel="stylesheet"
-        <link rel="stylesheet" href="css/united/bootstrap.css">
-        
+        <link rel="stylesheet" <link rel="stylesheet" href="css/united/bootstrap.css">
+
         <link rel="stylesheet" type="text/css"
-        href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
-        crossorigin="anonymous" />
+            href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+            integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+            crossorigin="anonymous" />
 
         <title>Tech Blog</title>
     </head>
     <style>
-        html, body{
+        html,
+        body {
             font-size: 1rem;
         }
+
         a.pro:hover,
         a.pro:focus {
             text-decoration: none;
@@ -48,7 +49,7 @@
             padding: 1rem 1rem 1rem 1rem;
         }
 
-        .text-md{
+        .text-md {
             font-size: 0.80rem;
         }
 
@@ -75,6 +76,9 @@
         .rounded-xl {
             border-radius: 0.5rem;
         }
+        .rounded-2xl {
+            border-radius: 1.0rem;
+        }
 
         .rounded-up {
             border-radius: 1.5rem;
@@ -83,6 +87,7 @@
         .border-med {
             border-width: 0.25rem;
         }
+
         .border-thk {
             border-width: 0.5rem;
         }
@@ -102,98 +107,114 @@
         .bg-body {
             background-color: #6f8ea3;
         }
+
         .bg-green {
-            
-            background-color: #027e33;;
+
+            background-color: #027e33;
+            ;
         }
+
         .nav-item {
             padding: 0px 0px 0px 0px;
             margin: 0px 0px 0px 0px;
         }
+
         .nav-item .fas {
-            font-size:1.25rem;
+            font-size: 1.25rem;
         }
-        .text-ubu{
+
+        .text-ubu {
             font-family: Ubuntu;
         }
+        .card-columns {
+            column-count: 3;
+        }        
     </style>
 
     <body class="bg-body">
         <header>
-        <nav class="navbar navbar-expand navbar-dark bg-primary text-light text-xl px-1 m-0 py-0 shadow-lg">
-            <ul class="nav navbar-nav p-0 m-0">
-                <li class="nav-item text-xl py-0 mr-5">
-                    <a class="nav-link px-0 mx-1 text-dark" href="https://mvctechblogger.herokuapp.com">
-                    
-                    <span class="text-secondary border-top border-dark border-thk pt-0 font-weight-bold rounded-lg font-italic">Tech</span>
-                    <i class="fab fa-bimobject mx-0 px-2 text-light bg-dark py-1 rounded-xl"></i><u class="font-weight-bold">logger</u>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-0 mx-1" href="/">
-                    <i class="fas fa-home"></i>
-                     <span class="text-ubu">Home</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-0 mx-1" href="/dashboard/">
-                    <i class="fas fa-tachometer-alt"></i>
-                    </a>
-                </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link px-0 mx-1 dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                    aria-haspopup="true" aria-expanded="false">Dashboard</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#tab1Id">    <i class="fas fa-file-signature"></i> User Posts</a>
-                    <a class="dropdown-item" href="#tab2Id">    <i class="fas fa-comment-dots"></i> User Comments</a>
-                    <a class="dropdown-item" href="#tab3Id">
-                        <i class="fas fa-envelope"></i> 
-                        Received
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#tab4Id">
-                        <i class="fas fa-edit"></i> New Post</a>
-                </div>
-            </li>                
-                <li class="nav-item">
-                    <a class="nav-link px-0 mx-1" href="/">
-                    <i class="fas fa-sign-in-alt"></i>
-                     <span class="text-ubu">Login</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-0 mx-1" href="/">
-                    <i class="fas fa-user-plus"></i>
-                     <span class="text-ubu">Signup</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-0 mx-1" href="/">
-                    <i class="fas fa-sign-out-alt"></i>
-                     <span class="text-ubu">Logout</span>
-                    </a>
-                </li>
+            <nav
+                class="navbar navbar-expand navbar-dark bg-primary text-light text-xl px-1 m-0 py-0 shadow-lg">
+                <ul class="nav navbar-nav p-0 m-0">
+                    <li class="nav-item text-xl py-0 mr-5">
+                        <a class="nav-link px-0 mx-1 text-dark"
+                            href="https://mvctechblogger.herokuapp.com">
 
-            </ul>
-        </nav>
+                            <span
+                                class="text-secondary border-top border-dark border-thk pt-0 font-weight-bold rounded-lg font-italic">Tech</span>
+                            <i
+                                class="fab fa-bimobject mx-0 px-2 text-light bg-dark py-1 rounded-xl"></i><u
+                                class="font-weight-bold">logger</u>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-0 mx-1" href="/">
+                            <i class="fas fa-home"></i>
+                            <span class="text-ubu">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-0 mx-1" href="/dashboard/">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-0 mx-1 dropdown-toggle" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">Dashboard</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#tab1Id"> <i
+                                    class="fas fa-file-signature"></i> User Posts</a>
+                            <a class="dropdown-item" href="#tab2Id"> <i
+                                    class="fas fa-comment-dots"></i> User Comments</a>
+                            <a class="dropdown-item" href="#tab3Id">
+                                <i class="fas fa-envelope"></i>
+                                Received
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#tab4Id">
+                                <i class="fas fa-edit"></i> New Post</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-0 mx-1" href="/">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="text-ubu">Login</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-0 mx-1" href="/">
+                            <i class="fas fa-user-plus"></i>
+                            <span class="text-ubu">Signup</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-0 mx-1" href="/">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="text-ubu">Logout</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
         </header>
+        <main class="mini">  {{{ body }}}  </main>
 
-        <footer class="footer container-fluid footer text-center m-0 p-0 text-ubu fixed-bottom bg-dark text-secondary" >
-        <img alt="@attila5287" src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4" class="rounded-up bg-light p-1 m-0" width="40px" height="40px" />
+
+        <footer
+            class="footer container-fluid footer text-center m-0 mt-5 p-0 text-ubu fixed-bottom bg-dark text-secondary">
+            <img alt="@attila5287"
+                src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4"
+                class="rounded-up bg-light p-1 m-0" width="40px" height="40px" />
             <small><i>powered by: </i></small>
             <i class="text-xl fab fa-node bg-green text-light rounded-lg px-1 py-0"></i>
             <i class="text-lg fab fa-npm bg-danger text-light rounded-lg px-1 py-0"></i>
             <span class="text-sm font-italic"><b>
-                <i class="fas fa-server"></i>
-                Express, 
-                <i class="fas fa-database"></i>
-                Sequelize, MySQL</b></span>
+                    <i class="fas fa-server"></i>
+                    Express,
+                    <i class="fas fa-database"></i>
+                    Sequelize, MySQL</b></span>
         </footer>
-        <main class="mini">
-
-            {{{ body }}}
-
-        </main>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js">
         </script>
