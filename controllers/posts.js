@@ -33,7 +33,7 @@ router.post( '/post', async ( req, res ) => {
     res.status(400).json(err);
   }
 });
-
+// need this for select menu to load user's posts
 router.get( '/api/posts/user/:id', async ( req, res ) => {
   try {
     const models = await Post.findAll( {
