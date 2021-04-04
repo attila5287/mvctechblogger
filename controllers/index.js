@@ -4,6 +4,7 @@ const router = require('express').Router();
 // const apiRoutes = require('./api');
 const { User, Post, Reply, Category, Usercat } = require('../models');
 
+
 // router.use('/api', apiRoutes);
 // We find all dishes in the db and set the data equal to dishData
 router.get('/dashboard', async (req, res) => {
@@ -20,14 +21,15 @@ router.get('/dashboard', async (req, res) => {
   
   const user = user_model.get( { plain: true } );
   const post_topics = [
-    {value : 1 ,  option :"Question about how-to-do?" },
-    {value : 2 ,  option :"Ask about general opinion" },
     {value : 3 ,  option :"Tips-n-Tricks from masters" },
+    {value : 2 ,  option :"Ask about general opinion" },
+    {value : 1 ,  option :"Question about how-to-do?" },
     {value : 4 ,  option :"Ask to the masters" },
     {value : 5 ,  option :"Fun facts..." },
     {value : 6 ,  option :"Soft-topic" },
     {value : 7 ,  option :"None of the above" },
   ];
+  // const all_posted = Post.findAll({`where`:})
   res.render('dashboard', { user , cats, post_topics});
 });
 
@@ -82,24 +84,6 @@ router.get( '/signup', ( req, res ) => {
   // Otherwise, render the 'login' template
   res.render('signup');
 });
-
-router.get('/new_Post', withAuth, (req, res) => {
-  res.render('new_Post',{ logged_in: req.session.logged_in, user_id: req.session.user_id,});
-});
-
-router.get('/Posts/:id', withAuth, async (req, res) => {
-  const pro_model = await Post.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
-  // res.json( pro.get( { plain: true } ) );
-
-  const pro = pro_model.get( { plain: true } )
-
-  const user_model = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
-  const user = user_model.get( { plain: true } );
-  res.render('Post', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
-
-});
-
-
 // route to get all dishes
 router.get('/profile/:id',withAuth, async (req, res) => {
   // We find all dishes in the db and set the data equal to dishData

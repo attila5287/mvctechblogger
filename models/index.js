@@ -55,9 +55,6 @@ Category.belongsToMany(User, {
 });
 
 
-
-
-
 module.exports = {
   User,
   Post,

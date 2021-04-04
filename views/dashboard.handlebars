@@ -1,3 +1,15 @@
+<style>
+  form {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+  .form-group{
+font-family: Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 1.25rem;
+color: #772953;
+color: #e95420;
+color: silver;
+  }
+</style>
 <h4 class="d-flex flex-row justify-content-center text-center text-ubu align-items-center text-2l">
   Welcome to 
 <span class="fas fa-tachometer-alt p-1 rounded-up title"> </span>
@@ -11,54 +23,43 @@ Dashboard
     font-size: 2rem;
   }
 </style>
-<div class="d-flex flex-row justify-content-around text-ubu text-sm font-weight-bold">
+<div class="opac-70 d-flex flex-row justify-content-around text-ubu text-sm font-weight-bold">
 <span>New Content</span>
 <span>Update Content</span>
 <span>Account Settings</span>
 </div>
 
+<div class="text-center">
 <div class="btn-group">
-  <button class="px-5 btn btn-dark shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#add_content" aria-expanded="false"
-      aria-controls="add_content">
+  <button class="px-5 btn btn-dark shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#post_content" aria-expanded="false"
+      aria-controls="post_content">
     <i class="far fa-paper-plane"></i>
   </button>
   <button class="px-5 btn btn-primary shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#update_content" aria-expanded="false"
       aria-controls="update_content">
     <i class="far fa-edit"></i>
   </button>
-  <button class="px-5 btn btn-info shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#update_content" aria-expanded="false"
+  <button class="px-5 btn btn-info shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#user_account" aria-expanded="false"
       aria-controls="update_content">
     <i class="fas fa-user-cog"></i>
   </button>
 
 </div>
+</div>
 
-
-<div class="collapse" id="add_content">
+<div class="collapse" id="post_content">
 <div class="form-group">
-<h1 class="title text-light mt-5">
+<h1 class="text-light mt-5">
 <i class="title far fa-paper-plane my-0"></i> 
 post content
 </div>
 <hr class="border-dark border-med">
-<style>
-  form {
-    padding: 2rem 1rem 2rem 1rem;
-  }
-  .form-group{
-font-family: Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-font-size: 1.25rem;
-color: #772953;
-color: #e95420;
-color: silver;
-  }
-</style>
 
-<form method="POST" action="/new/post" class="collapse show rounded-up border-light bg-dark border-med border-primary mt-0 mb-5 pt-2">
+<form method="POST" action="/post" class="collapse show rounded-up border-light bg-dark border-med border-primary mt-0 mb-5 pt-4">
 
 <div class="form-group shadow-lg">
   <label for="title">
-    <i class="fab fa-bimobject pr-0 text-xl"></i>log Category</label>
+    <i class="fab fa-bimobject pr-0 text-xl"></i> Category</label>
   <label for="category_id"></label>
   <select class="custom-select form-control-dark" name="category_id" id="category_id">
     {{#each cats as |opt| }}
@@ -67,20 +68,20 @@ color: silver;
   </select>
 </div>
 <div class="form-group shadow-lg">
-  <label for="post_topic"><i class="fab fa-bimobject pr-0 text-xl"></i>log Topic</label>
-  <select class="custom-select form-control-dark" name="post_topic" id="post_topic">
-    {{#each post_topics as |t| }}
+  <label for="topic"><i class="fab fa-bimobject pr-0 text-xl"></i> Topic</label>
+  <select class="custom-select form-control-dark" name="topic" id="topic">
+    {{#each topics as |t| }}
     <option value="{{t.value}}">{{t.option}}</option>
     {{/each}}
   </select>
 </div>
 
 <div class="form-group shadow-lg">
-  <label for="title"><i class="fab fa-bimobject pr-0 text-xl"></i>log Title</label>
+  <label for="title"><i class="fab fa-bimobject pr-0 text-xl"></i> Title</label>
   <input type="text" name="title" class="form-control form-control-dark" value="A new blog title" >
 </div>
 <div class="form-group shadow-lg">
-  <label for="content"><i class="fab fa-bimobject pr-0 text-xl"></i>log Content</label>
+  <label for="content"><i class="fab fa-bimobject pr-0 text-xl"></i> Content</label>
   <textarea type="text" name="content" class="form-control form-control-dark " >
     A new blog content
     </textarea>
@@ -91,3 +92,56 @@ color: silver;
 <blockquote><p class="text-light text-ubu text-center text-lg">Post to your blog and live feed on app</p></blockquote>
 </form>
 </div>
+{{!--  =========================== --}}
+
+<div class="collapse" id="update_content">
+<div class="form-group">
+<h1 class="text-light mt-5">
+<i class="title far fa-edit my-0"></i> 
+update content
+</div>
+<hr class="border-primary border-med">
+
+<form method="POST" action="/update/post" class="collapse show rounded-up border-light bg-primary border-med border-primary mt-0 mb-5 pt-4">
+<div class="form-group">
+  <label for=""></label>
+  <select class="custom-select" name="" id="">
+    <option selected>Select a post update... </option>
+  </select>
+</div>
+<div class="form-group shadow-lg">
+  <label for="title">
+    <i class="fab fa-bimobject pr-0 text-xl"></i> Category</label>
+  <label for="category_id"></label>
+  <select class="custom-select form-control-dark" name="category_id" id="category_id">
+    {{#each cats as |opt| }}
+    <option value="{{opt.id}}">{{opt.category_name}}</option>
+    {{/each}}
+  </select>
+</div>
+<div class="form-group shadow-lg">
+  <label for="post_topic"><i class="fab fa-bimobject pr-0 text-xl"></i> Topic</label>
+  <select class="custom-select form-control-dark" name="post_topic" id="post_topic">
+    {{#each post_topics as |t| }}
+    <option value="{{t.value}}">{{t.option}}</option>
+    {{/each}}
+  </select>
+</div>
+
+<div class="form-group shadow-lg">
+  <label for="title"><i class="fab fa-bimobject pr-0 text-xl"></i> Title</label>
+  <input type="text" name="title" class="form-control form-control-dark" value="{{post.category.category_name}}" >
+</div>
+<div class="form-group shadow-lg">
+  <label for="content"><i class="fab fa-bimobject pr-0 text-xl"></i> Content</label>
+  <textarea type="text" name="content" class="form-control form-control-dark " >
+    A new blog content
+    </textarea>
+</div>
+<div class="form-group shadow-lg">
+  <input type="submit" value="Submit" class="px-5 btn btn-primary btn-lg btn-block rounded-xl shadow-lg">
+</div>
+<blockquote><p class="text-light text-ubu text-center text-lg">Post to your blog and live feed on app</p></blockquote>
+</form>
+</div>
+
