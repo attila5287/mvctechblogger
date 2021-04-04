@@ -7,15 +7,27 @@ const { User, Post, Reply, Category } = require('../models');
 // router.use('/api', apiRoutes);
 
 // route to get all dishes
+router.get('/json', async (req, res) => {
+  // We find all dishes in the db and set the data equal to dishData
+  const post_models = await Post.findAll({ include: { all: true } }).catch(
+    (err) => {
+      res.json(err);
+    }
+  );
+  const all = post_models.map( ( p ) => p.get( { plain: true } ) );
+  res.json( all );
+});
+
+// route to get all dishes
 router.get('/', async (req, res) => {
   // We find all dishes in the db and set the data equal to dishData
-  const proData = await Post.findAll({ include: { all: true } }).catch(
+  const post_models = await Post.findAll({ include: { all: true } }).catch(
     (err) => {
       res.json(err);
     }
   );
   // We use map() to iterate over dishData and then add .get({ plain: true }) each object to serialize it.
-  const all = proData.map((p) => p.get({ plain: true }));
+  const all = post_models.map((p) => p.get({ plain: true }));
   // We render the template, 'all', passing in dishes, a new array of serialized objects.
   // res.status(200).json(all);
   res.render('all', { all, logged_in: req.session.logged_in,  user_id: req.session.user_id, });
