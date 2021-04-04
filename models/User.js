@@ -20,9 +20,14 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     img_url: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'asd',
     },
     email: {
       type: DataTypes.STRING,
