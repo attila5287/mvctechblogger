@@ -7,7 +7,7 @@ const cats_j = require('./json/cats.json');
 const reply_j = require('./json/replies.json');
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: true });
 
   const users = await User.bulkCreate(user_j, {
     individualHooks: true,
