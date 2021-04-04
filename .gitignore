@@ -106,3 +106,11 @@ server copy.js
 site.db
 views/layouts/sketch.html
 views/layouts/sketch.html
+views copy/all.handlebars
+views copy/login.handlebars
+views copy/new_project.handlebars
+views copy/profile.handlebars
+views copy/project.handlebars
+views copy/signup.handlebars
+views copy/layouts/main.handlebars
+views copy/layouts/main.html
