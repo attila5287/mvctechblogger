@@ -2,7 +2,7 @@ const withAuth = require('../utils/auth');
 // const path = require( 'path' );
 const router = require('express').Router();
 // const apiRoutes = require('./api');
-const { User, Post, Reply, Category, UserCategory } = require('../models');
+const { User, Post, Reply, Category, Usercat } = require('../models');
 
 // router.use('/api', apiRoutes);
 

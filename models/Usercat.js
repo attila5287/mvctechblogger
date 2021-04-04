@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class UserCategory extends Model {}
+class Usercat extends Model {}
 
-UserCategory.init(
+Usercat.init(
   {
     // define columns
     id:{
@@ -16,7 +16,7 @@ UserCategory.init(
     user_id:{
       type:DataTypes.INTEGER,
       references:{
-        model:'post',
+        model:'user',
         key:'id'
       }//foreign key
     },
@@ -33,8 +33,8 @@ UserCategory.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'usercategory',
+    modelName: 'usercat',
   }
 );
 
-module.exports = UserCategory;
+module.exports = Usercat;

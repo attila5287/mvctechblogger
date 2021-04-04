@@ -3,8 +3,9 @@ const User = require( './User' );
 const Post = require( './Post' );
 const Reply = require('./Reply');
 const Category = require( './Category' );
-const UserCategory = require('./UserCategory');
+const Usercat = require('./Usercat');
 require( '../config/connection' )
+
 
 Reply.belongsTo(Post,{
   foreignKey:'post_id',
@@ -42,23 +43,25 @@ User.hasMany( Reply, {
 });
 
 // Products belongToMany Tags (through ProductTag)
-User.belongsToMany(Category, {
-  through: UserCategory,
+User.belongsToMany( Category, {
+  through: Usercat,
   foreignKey: 'user_id'
-})
+} );
 
 // Tags belongToMany Products (through ProductTag)
 Category.belongsToMany(User, {
-  through: UserCategory,
+  through: Usercat,
   foreignKey: 'category_id',
 });
 
-// Products belongsTo Category
+
+
+
 
 module.exports = {
   User,
   Post,
   Reply,
   Category,
-  UserCategory,
+  Usercat,
 };
