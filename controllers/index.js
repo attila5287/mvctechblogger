@@ -11,29 +11,14 @@ const {
 } = require( '../models' );
 
 
-// router.use('/api', apiRoutes);
-// We find all dishes in the db and set the data equal to dishData
 router.get( '/dashboard/:id', async ( req, res ) => {
 
-      const cat_models = await Category.findAll( {
-        include: {
-          all: true
-        }
-      } ).catch(
-        ( err ) => {
-          res.json( err );
-        }
-      );
-
-      const cats = cat_models.map( ( p ) => p.get( {
-        plain: true
-      } ) );
-      // const cat = categories_model.get( { plain: true } );
       const user_model = await User.findByPk( req.params.id ).catch( e => console.log( e ) );
 
       const user = user_model.get( {
         plain: true
       } );
+  
       const post_topics = [ {
           value: 3,
           option: "Tips-n-Tricks from masters"
@@ -76,12 +61,11 @@ router.get( '/dashboard/:id', async ( req, res ) => {
         const posts = users_posts.map( p => p.get( {
           plain: true
         } ) );
-
         res.render( 'dashboard', {
           user,
-          cats,
           post_topics,
-          posts
+          posts,
+          
         } );
   
       } );
