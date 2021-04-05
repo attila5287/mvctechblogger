@@ -105,8 +105,12 @@ update content
 <form method="POST" action="/update/post" class="collapse show rounded-up border-light bg-primary border-med border-primary mt-0 mb-5 pt-4">
 <div class="form-group">
   <label for=""></label>
-  <select class="custom-select" name="" id="">
-    <option selected>Select a post update... </option>
+  <select class="custom-select" name="" id="select_posted">
+    <option> Previously posted content by the current user, choose which one to update.... </option>
+    {{#each posts as |p|}}
+    <option value="{{p.id}}"> {{p.title}} </option>
+    {{/each}}
+    
   </select>
 </div>
 <div class="form-group shadow-lg">
@@ -115,7 +119,7 @@ update content
   <label for="category_id"></label>
   <select class="custom-select form-control-dark" name="category_id" id="category_id">
     {{#each cats as |opt| }}
-    <option value="{{opt.id}}">{{opt.category_name}}</option>
+    <option value="{{opt.id}}">{{opt.category_name}}</`>
     {{/each}}
   </select>
 </div>
@@ -145,3 +149,10 @@ update content
 </form>
 </div>
 
+<script>
+
+{{!-- Document.getElementById('select_posted'); --}}
+// const option =
+// $('#select_posted').append(option);
+
+</script>
