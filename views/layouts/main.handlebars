@@ -165,9 +165,8 @@
                           </a>
                       </li>
                       <li class="nav-item">
-                      <li class="nav-item">
                           <a class="nav-link px-0 mx-1">
-                              <form method="POST" action="/api/users/logout" class="text-nowrap">
+                              <form method="POST" action="/api/users/logout" class="text-nowrap my-0 py-0">
                                   <i class="fas fa-sign-out-alt"></i>
                                   <input type="submit" value="Logout"
                                       class="btn btn-sm btn-primary border-0 opac-70 font-italic font-weight-bold text-sm pl-0 pr-5">
@@ -176,6 +175,7 @@
                       </li>
 
                       {{else}}
+                      <li class="nav-item">
                       <a class="nav-link px-0 mx-1" href="/login">
                           <i class="fas fa-sign-in-alt"></i>
                           <span class="text-ubu">Login</span>

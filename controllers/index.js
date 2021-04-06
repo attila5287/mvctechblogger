@@ -74,6 +74,8 @@ router.get( '/dashboard/:id', async ( req, res ) => {
     user,
     post_topics,
     posts,
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
 
   } );
 
