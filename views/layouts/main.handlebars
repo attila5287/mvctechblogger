@@ -1,217 +1,225 @@
   <!DOCTYPE html>
-<html lang="en">
+  <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="Description" content="Full Stack Tech Blog with Express framework, mySQL DB, Sequelize ORM and Bcrypt/Session for Authentication; deployed on Heroku" />
-        <link rel="stylesheet" rel="stylesheet" href="/css/united/bootstrap.css">
-        {{!-- <link rel="stylesheet" rel="stylesheet" href="/css/fa/all.css"> --}}
-  <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <meta name="Description"
+              content="Full Stack Tech Blog with Express framework, mySQL DB, Sequelize ORM and Bcrypt/Session for Authentication; deployed on Heroku" />
+          <link rel="stylesheet" rel="stylesheet" href="/css/united/bootstrap.css">
+          {{!-- <link rel="stylesheet" rel="stylesheet" href="/css/fa/all.css"> --}}
+          <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
-        <title>Tech Blog</title>
-    </head>
-    <style>
-        html,
-        body {
-            font-size: 1rem;
-        }
+          <title>Tech Blog</title>
+      </head>
+      <style>
+          html,
+          body {
+              font-size: 1rem;
+          }
 
-        a.pro:hover,
-        a.pro:focus {
-            text-decoration: none;
-        }
+          a.pro:hover,
+          a.pro:focus {
+              text-decoration: none;
+          }
 
-        .bg-body {
-            background-color: #222;
-        }
+          .bg-body {
+              background-color: #222;
+          }
 
-        .form-control-dark {
-            color: #fff;
-            background-color: rgba(255, 255, 255, .1);
-            border-color: rgba(255, 255, 255, .1);
-        }
+          .form-control-dark {
+              color: #fff;
+              background-color: rgba(255, 255, 255, .1);
+              border-color: rgba(255, 255, 255, .1);
+          }
 
-        .form-control-dark:focus {
-            border-color: transparent;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-        }
+          .form-control-dark:focus {
+              border-color: transparent;
+              box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+          }
 
-        .mini {
-            width: 100%;
-            margin: auto;
-            max-width: 600px;
-            padding: 0.1rem 0.1rem 0.1rem 0.1rem ;
-        }
+          .mini {
+              width: 100%;
+              margin: auto;
+              max-width: 600px;
+              padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+          }
 
-        .text-md {
-            font-size: 0.80rem;
-        }
+          .text-md {
+              font-size: 0.80rem;
+          }
 
-        .text-reg {
-            font-size: 1.0rem;
-        }
+          .text-reg {
+              font-size: 1.0rem;
+          }
 
-        .text-lg {
-            font-size: 1.25rem;
-        }
+          .text-lg {
+              font-size: 1.25rem;
+          }
 
-        .text-xl {
-            font-size: 1.5rem;
-        }
+          .text-xl {
+              font-size: 1.5rem;
+          }
 
-        .text-2xl {
-            font-size: 2rem;
-        }
+          .text-2xl {
+              font-size: 2rem;
+          }
 
-        .rounded-circle {
-            border-radius: 50% 50% 50% 50%;
-        }
+          .rounded-circle {
+              border-radius: 50% 50% 50% 50%;
+          }
 
-        .rounded-xl {
-            border-radius: 0.5rem;
-        }
-        .rounded-2xl {
-            border-radius: 1.0rem;
-        }
+          .rounded-xl {
+              border-radius: 0.5rem;
+          }
 
-        .rounded-up {
-            border-radius: 1.5rem;
-        }
+          .rounded-2xl {
+              border-radius: 1.0rem;
+          }
 
-        .border-med {
-            border-width: 0.25rem;
-        }
+          .rounded-up {
+              border-radius: 1.5rem;
+          }
 
-        .border-thk {
-            border-width: 0.5rem;
-        }
+          .border-med {
+              border-width: 0.25rem;
+          }
 
-        .opac-50 {
-            opacity: 70%;
-        }
+          .border-thk {
+              border-width: 0.5rem;
+          }
 
-        .opac-70 {
-            opacity: 70%;
-        }
+          .opac-50 {
+              opacity: 70%;
+          }
 
-        .title {
-            font-size: 4rem;
-        }
+          .opac-70 {
+              opacity: 70%;
+          }
 
-        .bg-body {
-            background-color: #6f8ea3;
-        }
+          .title {
+              font-size: 4rem;
+          }
 
-        .bg-green {
+          .bg-body {
+              background-color: #6f8ea3;
+          }
 
-            background-color: #027e33;
-            ;
-        }
+          .bg-green {
 
-        .nav-item {
-            padding: 0px 0px 0px 0px;
-            margin: 0px 0px 0px 0px;
-        }
+              background-color: #027e33;
+              ;
+          }
 
-        .nav-item .fas {
-            font-size: 1.25rem;
-        }
+          .nav-item {
+              padding: 0px 0px 0px 0px;
+              margin: 0px 0px 0px 0px;
+          }
 
-        .text-ubu {
-            font-family: Ubuntu;
-        }
-        .card-columns {
-            column-count: 4;
-        }
-        .text-sm {
-            font-size : 0.85rem ; 
-        }        
-    </style>
+          .nav-item .fas {
+              font-size: 1.25rem;
+          }
 
-    <body class="bg-body">
-        <header>
-            <nav
-                class="navbar navbar-expand navbar-dark bg-primary text-light text-xl px-1 m-0 py-0 shadow-lg">
-                <ul class="nav navbar-nav p-0 m-0">
-                    <li class="nav-item text-xl py-0 mr-5">
-                        <a class="nav-link px-0 mx-1 text-dark"
-                            href="https://mvctechblogger.herokuapp.com">
+          .text-ubu {
+              font-family: Ubuntu;
+          }
 
-                            <span
-                                class="text-secondary border-top border-dark border-thk pt-0 font-weight-bold rounded-lg font-italic">Tech</span>
-                            <i
-                                class="fab fa-bimobject mx-0 px-2 text-light bg-dark py-1 rounded-xl"></i><u
-                                class="font-weight-bold">logger</u>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/">
-                            <i class="fas fa-home"></i>
-                            <span class="text-ubu">Home</span>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}">
-                            <i class="fas fa-tachometer-alt"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/login">
-                            <i class="fas fa-sign-in-alt"></i>
-                            <span class="text-ubu">Login</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/signup">
-                            <i class="fas fa-user-plus"></i>
-                            <span class="text-ubu">Signup</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-0 mx-1">
-                <form method="POST" action="/api/users/logout" class="text-nowrap">
-              <i class="fas fa-sign-out-alt"></i>
-              <input type="submit" value="Logout"
-                class="btn btn-sm btn-primary border-0 opac-70 font-italic font-weight-bold text-sm pl-0 pr-5">
-            </form>                        
-                        </a>
-                    </li>
+          .card-columns {
+              column-count: 4;
+          }
 
-                </ul>
-            </nav>
-        </header>
-        <main class="mini">
+          .text-sm {
+              font-size: 0.85rem;
+          }
+      </style>
+
+      <body class="bg-body">
+          <header>
+              <nav
+                  class="navbar navbar-expand navbar-dark bg-primary text-light text-xl px-1 m-0 py-0 shadow-lg">
+                  <ul class="nav navbar-nav p-0 m-0">
+                      <li class="nav-item text-xl py-0 mr-5">
+                          <a class="nav-link px-0 mx-1 text-dark"
+                              href="https://mvctechblogger.herokuapp.com">
+
+                              <span
+                                  class="text-secondary border-top border-dark border-thk pt-0 font-weight-bold rounded-lg font-italic">Tech</span>
+                              <i
+                                  class="fab fa-bimobject mx-0 px-2 text-light bg-dark py-1 rounded-xl"></i><u
+                                  class="font-weight-bold">logger</u>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link px-0 mx-1" href="/">
+                              <i class="fas fa-home"></i>
+                              <span class="text-ubu">Home</span>
+                          </a>
+                      </li>
+                      {{#if logged_in}}
+                      <li class="nav-item">
+                          <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}">
+                              <i class="fas fa-tachometer-alt"></i>
+                              Dashboard
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                      <li class="nav-item">
+                          <a class="nav-link px-0 mx-1">
+                              <form method="POST" action="/api/users/logout" class="text-nowrap">
+                                  <i class="fas fa-sign-out-alt"></i>
+                                  <input type="submit" value="Logout"
+                                      class="btn btn-sm btn-primary border-0 opac-70 font-italic font-weight-bold text-sm pl-0 pr-5">
+                              </form>
+                          </a>
+                      </li>
+
+                      {{else}}
+                      <a class="nav-link px-0 mx-1" href="/login">
+                          <i class="fas fa-sign-in-alt"></i>
+                          <span class="text-ubu">Login</span>
+                      </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link px-0 mx-1" href="/signup">
+                              <i class="fas fa-user-plus"></i>
+                              <span class="text-ubu">Signup</span>
+                          </a>
+                      </li>
+
+                      {{/if}}
+
+                  </ul>
+              </nav>
+          </header>
+          <main class="mini">
               {{{ body }}}
-        </main>
+          </main>
 
 
-        <footer
-            class="mt-5 footer container-fluid footer text-center m-0 mt-5 p-0 text-ubu fixed-bottom bg-dark text-secondary">
-            <img alt="@attila5287"
-                src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4"
-                class="rounded-up bg-light p-1 m-0" width="40px" height="40px" />
-            <small><i>powered by: </i></small>
-            <i class="text-xl fab fa-node bg-green text-light rounded-lg px-1 py-0"></i>
-            <i class="text-lg fab fa-npm bg-danger text-light rounded-lg px-1 py-0"></i>
-            <span class="text-sm font-italic"><b>
-                    <i class="fas fa-server"></i>
-                    Express,
-                    <i class="fas fa-database"></i>
-                    Sequelize, MySQL</b></span>
-        </footer>
+          <footer
+              class="mt-5 footer container-fluid footer text-center m-0 mt-5 p-0 text-ubu fixed-bottom bg-dark text-secondary">
+              <img alt="@attila5287"
+                  src="https://avatars1.githubusercontent.com/u/42498753?s=60&amp;u=739973fd70454aa533c67bccf17b6aeddcc6361f&amp;v=4"
+                  class="rounded-up bg-light p-1 m-0" width="40px" height="40px" />
+              <small><i>powered by: </i></small>
+              <i class="text-xl fab fa-node bg-green text-light rounded-lg px-1 py-0"></i>
+              <i class="text-lg fab fa-npm bg-danger text-light rounded-lg px-1 py-0"></i>
+              <span class="text-sm font-italic"><b>
+                      <i class="fas fa-server"></i>
+                      Express,
+                      <i class="fas fa-database"></i>
+                      Sequelize, MySQL</b></span>
+          </footer>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
-        </script>
-            <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js">
-    </script>
-    </body>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js">
+          </script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
+          </script>
+          <script
+              src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js">
+          </script>
+      </body>
 
-</html>
+  </html>
