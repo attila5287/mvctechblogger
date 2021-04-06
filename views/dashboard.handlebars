@@ -23,24 +23,19 @@ color: silver;
     font-size: 2rem;
   }
 </style>
-<div class="opac-70 d-flex flex-row justify-content-around text-ubu text-sm font-weight-bold text-center">
-<span>New Post</span>
-<span>Update Posted</span>
-</div>
 
-<div class="text-center">
-<div class="btn-group">
-  <button class="px-5 btn btn-dark shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#post_content" aria-expanded="false"
+  <p class="text-center mb-0">New Post</p>
+  <button class="px-5 btn btn-dark btn-block shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#post_content" aria-expanded="false"
       aria-controls="post_content">
     <i class="far fa-paper-plane"></i>
   </button>
-  <button class="px-5 btn btn-primary shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#update_content" aria-expanded="false"
+  <p class="text-center mb-0">Update Posted</p>
+  
+  <button class="px-5 btn btn-primary btn-block shadow-lg rounded-xl" type="button" data-toggle="collapse" data-target="#update_content" aria-expanded="false"
       aria-controls="update_content">
     <i class="far fa-edit"></i>
   </button>
 
-</div>
-</div>
 
 <div class="collapse" id="post_content">
 <div class="form-group">
@@ -115,11 +110,6 @@ update posted
     
       </p>
   <p class="text-center text-lg">
-    <i class="far fa-calendar text-lg"> </i>
-    <i class="far fa-calendar text-lg"> </i>
-    <i class="far fa-calendar text-lg"> </i>
-    <i class="far fa-calendar text-lg"> </i>
-    <i class="far fa-calendar text-lg"> </i>
     <i class="far fa-calendar text-lg"> </i>
     {{format_date p.date_created}}</p>
     <a class="btn btn-primary btn-block btn-lg py-4" href="Jumbo action link" role="button"> 

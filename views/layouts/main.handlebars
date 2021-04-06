@@ -5,16 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="Description"
-
-        
-            content="Full Stack Tech Blog with Express framework, mySQL DB, Sequelize ORM and Bcrypt/Session for Authentication; deployed on Heroku" />
-        <link rel="stylesheet" <link rel="stylesheet" href="/css/united/bootstrap.css">
-
-        <link rel="stylesheet" type="text/css"
-            href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-            integrity="sha384-O8wh S3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
-            crossorigin="anonymous" />
+        <meta name="Description" content="Full Stack Tech Blog with Express framework, mySQL DB, Sequelize ORM and Bcrypt/Session for Authentication; deployed on Heroku" />
+        <link rel="stylesheet" rel="stylesheet" href="/css/united/bootstrap.css">
+        {{!-- <link rel="stylesheet" rel="stylesheet" href="/css/fa/all.css"> --}}
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
         <title>Tech Blog</title>
     </head>
@@ -162,45 +157,28 @@
                     <li class="nav-item">
                         <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}">
                             <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
                         </a>
                     </li>
-
-
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link px-0 mx-1 dropdown-toggle" data-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="true"
-                            aria-expanded="false">Dashboard</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#tab1Id"> <i
-                                    class="fas fa-file-signature"></i> User Posts</a>
-                            <a class="dropdown-item" href="#tab2Id"> <i
-                                    class="fas fa-comment-dots"></i> User Comments</a>
-                            <a class="dropdown-item" href="#tab3Id">
-                                <i class="fas fa-envelope"></i>
-                                Received
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#tab4Id">
-                                <i class="fas fa-edit"></i> New Post</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/">
+                        <a class="nav-link px-0 mx-1" href="/login">
                             <i class="fas fa-sign-in-alt"></i>
                             <span class="text-ubu">Login</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/">
+                        <a class="nav-link px-0 mx-1" href="/signup">
                             <i class="fas fa-user-plus"></i>
                             <span class="text-ubu">Signup</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-0 mx-1" href="/">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="text-ubu">Logout</span>
+                        <a class="nav-link px-0 mx-1">
+                <form method="POST" action="/api/users/logout" class="text-nowrap">
+              <i class="fas fa-sign-out-alt"></i>
+              <input type="submit" value="Logout"
+                class="btn btn-sm btn-primary border-0 opac-70 font-italic font-weight-bold text-sm pl-0 pr-5">
+            </form>                        
                         </a>
                     </li>
 

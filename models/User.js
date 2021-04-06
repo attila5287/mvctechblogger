@@ -19,10 +19,12 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue : "NewUser"
     },
     gender: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue : "m"
     },
     img_url: {
       type: DataTypes.STRING,

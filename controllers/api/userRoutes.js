@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
 
     console.log(req.body);
 
-    const userData = await User.create(req.body);
+    const userData = await User.create(req.body).catch(e=>console.log(e));
 
     req.session.save(() => {
       req.session.user_id = userData.id;
