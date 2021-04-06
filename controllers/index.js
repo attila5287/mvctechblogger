@@ -13,6 +13,86 @@ const {
 } = require( '../models' );
 
 
+router.put( '/post/:id',async ( req, res ) => {
+    // const 
+    try {
+        const mod = await Post.findByPk( request.params.id, { include: { all: true } } ).catch( e => console.log( e ) );
+        
+        mod.update(req.body);
+        const ser = mod.get( { plain: true } );
+        res.json( ser );
+        // res.redirect( '/dashboard' );
+    } catch (error) {
+        console.log('error :>> ', error);
+    }
+
+});
+
+// need this for select menu to load user's posts
+router.get( '/api/posts/user/:id', async ( req, res ) => {
+  try {
+    const models = await Post.findAll( {
+      where: {
+        user_id: req.params.id,
+        // user_id: req.session.user_id,
+      }
+    }, { include: { all: true } } ).catch( e => console.log( e ) );
+    
+    const all = models.map( p => p.get( { plain: true } ) );
+  
+    res.json( all );
+    
+  } catch ( error ) {
+    res.json( error );
+    
+  }
+});
+
+
+router.get( '/post/:id',async ( req, res ) => {
+  try {
+    const mod = await Post.findByPk(req.params.id);
+    const ser = mod.get( { plain: true } ); //serialized
+    res.json( ser );
+  } catch (error) {
+    // console.log(error);
+    res.json(error)
+  }
+});
+
+router.get('/api/posts', async (req, res) => {
+  const models = await Post.findAll( { include: { all: true } } ).catch(e=>console.log(e));
+  const all = models.map( p => p.get( { plain: true } ) );
+  res.json( all );
+});
+
+router.post('/post', async (req, res) => {
+  try {
+    const curr_user_id = req.session.user_id || 1;
+    const new_post = await Post.create({
+      ...req.body,
+      user_id: curr_user_id,
+    });
+    // res.status( 200 ).json( new_post );
+    res.redirect('/dashboard/'+curr_user_id);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.get('/Posts/:id', withAuth, async (req, res) => {
+  const pro_model = await Post.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
+  // res.json( pro.get( { plain: true } ) );
+
+  const pro = pro_model.get( { plain: true } )
+
+  const user_model = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
+  const user = user_model.get( { plain: true } );
+  res.render('Post', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
+
+});
+
+
 router.get( '/dashboard/:id', async ( req, res ) => {
 
   const user_model = await User.findByPk( req.params.id, {
@@ -70,9 +150,13 @@ router.get( '/dashboard/:id', async ( req, res ) => {
   const posts = users_posts.map( p => p.get( {
     plain: true
   } ) );
+  const cats_models = await Category.findAll().catch(e=>console.log(e));
+  const cats = cats_models.map( c => c.get( { plain: true } ) );
+
   res.render( 'dashboard', {
     user,
     post_topics,
+    cats,
     posts,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
