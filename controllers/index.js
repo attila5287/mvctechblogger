@@ -48,18 +48,6 @@ router.get( '/api/posts/user/:id', async ( req, res ) => {
   }
 });
 
-
-router.get( '/post/:id',async ( req, res ) => {
-  try {
-    const mod = await Post.findByPk(req.params.id);
-    const ser = mod.get( { plain: true } ); //serialized
-    res.json( ser );
-  } catch (error) {
-    // console.log(error);
-    res.json(error)
-  }
-});
-
 router.get('/api/posts', async (req, res) => {
   const models = await Post.findAll( { include: { all: true } } ).catch(e=>console.log(e));
   const all = models.map( p => p.get( { plain: true } ) );
@@ -80,7 +68,7 @@ router.post('/post', async (req, res) => {
   }
 });
 
-router.get('/Posts/:id', withAuth, async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   const pro_model = await Post.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
   // res.json( pro.get( { plain: true } ) );
 
@@ -88,7 +76,7 @@ router.get('/Posts/:id', withAuth, async (req, res) => {
 
   const user_model = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
   const user = user_model.get( { plain: true } );
-  res.render('Post', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
+  res.render('post', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
 
 });
 
