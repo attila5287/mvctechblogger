@@ -9,7 +9,9 @@
 </style>
 <h4 class="d-flex flex-row justify-content-center text-center text-ubu align-items-center text-2l">
   Welcome
-  <span class="fas fa-tachometer-alt p-1 rounded-up title"> </span>
+  <span>
+    <img src="{{user.img_url}}" class="img-thumbnail bg-transparent border-0 rounded-2xl" alt="user-img"> </span>
+
   {{user.name}}
 </h4>
 <style>
@@ -26,14 +28,14 @@
 <button class="px-5 btn btn-dark btn-block shadow-lg rounded-xl" type="button"
   data-toggle="collapse" data-target="#post_content" aria-expanded="false"
   aria-controls="post_content">
-  <i class="far fa-paper-plane"></i>
+  <h1 class="far fa-paper-plane"></h1>
 </button>
 <p class="text-center mb-0">Update Posted</p>
 
 <button class="px-5 btn btn-primary btn-block shadow-lg rounded-xl" type="button"
   data-toggle="collapse" data-target="#posted_content" aria-expanded="false"
   aria-controls="posted_content">
-  <i class="far fa-edit"></i>
+  <h1 class="far fa-edit"></h1>
 </button>
 
 
@@ -55,14 +57,6 @@
       <select class="custom-select" name="category_id" id="category_id">
         {{#each cats as |opt| }}
         <option value="{{opt.id}}">{{opt.category_name}}</option>
-        {{/each}}
-      </select>
-    </div>
-    <div class="form-group shadow-lg">
-      <label for="topic"><i class="fab fa-bimobject pr-0 text-xl"></i> Topic</label>
-      <select class="custom-select" name="topic" id="topic">
-        {{#each post_topics as |t| }}
-        <option value="{{t.value}}">{{t.option}}</option>
         {{/each}}
       </select>
     </div>
@@ -90,7 +84,6 @@
 
 <div class="collapse show" id="posted_content">
   <div class="form-group">
-    <h1 class=" fab fa-bimproject text-light mt-5"></h1>
     <i class="title far fa-edit my-0"></i>
     update posted
   </div>
@@ -98,42 +91,32 @@
 
   <div class="collapse show rounded-2xl border-light border-med border-primary mt-0 mb-5 pt-4">
     {{#each posts as |p|}}
-    <div class="jumbotron mx-5 rounded-2xl">
-      <h1 class="display-4">
-        ''
-        <span class="fab fa-bimproject title">
-          {{p.title}}
-          <i />
-
-      </h1>
-
-      <p class="text-xl">
-        <i class="far fa-comments text-xl"> </i>
+    <div class="card bg-info border-0 mt-4 mb-2 rounded-2xl">
+      <h2 class="card-header text-light">
+        <i class="fab fa-blogger"></i>
+          {{p.title}} 
+      </h2>
+  <div class="card-body bg-light">
+      <p class="card-text">
+        <i class="far fa-comments text-2xl"> </i>
         {{p.content}}
 
       </p>
-      <p class="text-center text-lg">
-        <i class="far fa-calendar text-lg"> </i>
-        {{format_date p.date_created}}</p>
-      <a class="btn btn-primary btn-block btn-lg py-4" href="/post/{{ p.id}}" role="button">
+  </div>
+  <div class="card-footer text-light text-center">
+        <i class="far fa-calendar text-xl"> </i>
+        {{format_date p.date_created}}
+        in 
+        <i class="fas fa-tags text-xl"> </i>
+        {{p.category.category_name}}
+  </div>
+    </div>
+      <a class="btn btn-primary btn-lg py-2 mb-5 mt-2 rounded-xl" href="/post/{{ p.id}}" role="button">
         <i class="fas fa-edit"></i>
         Update Post #{{ p.id}}
 
       </a>
-    </div>
     {{/each}}
-
-
-
-
-    <div class="form-group shadow-lg">
-      <input type="submit" value="View/Update Post"
-        class="px-5 btn btn-dark btn-lg btn-block rounded-xl shadow-lg">
-    </div>
-    <blockquote>
-      <p class="text-light text-ubu text-center
- text-lg">Post to your blog and live feed on app</p>
-    </blockquote>
 
 
   </div>

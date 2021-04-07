@@ -12,24 +12,46 @@ const {
   Usercat
 } = require( '../models' );
 
-router.post('/reply/:id',withAuth, async (req, res) => {
-  new_reply = await Reply.create( {...req.body, user_id: req.session.user_id, post_id:req.params.id}  ).catch( e => console.log( e ) );
 
-  // res.json( new_reply );
-  res.redirect( '/view/post/' + req.params.id );
-  
-});
-
-router.get( '/view/post/:id', withAuth, async ( req, res ) => {
-
-  const post_m = await Post.findByPk( req.params.id, {
+router.get( '/', async ( req, res ) => {
+  // We find all dishes in the db and set the data equal to dishData
+  const post_models = await Post.findAll( {
     include: {
       all: true
     }
-  } ).catch( e => console.log( e ) );
-  const post = post_m.get( {
+  } ).catch(
+    ( err ) => {
+      res.json( err );
+    }
+  );
+  // We use map() to iterate over dishData and then add .get({ plain: true }) each object to serialize it.
+  const all = post_models.map( ( p ) => p.get( {
     plain: true
+  } ) );
+  // We render the template, 'all', passing in dishes, a new array of serialized objects.
+  // res.status(200).json(all);
+  res.render( 'all', {
+    all,
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id,
   } );
+} );
+
+router.get( '/view/post/:id', withAuth, async ( req, res ) => {
+
+  const post_m = await Post.findAll( {
+    include: {
+      all: true,
+      nested: true,
+    }
+    , where: {
+      id: req.params.id
+    }
+  }
+   ).catch( e => console.log(e));
+
+  const post = post_m.map(p=> p.get( {plain: true} ));
+  
   // res.json( { 'message': 'success' } );
   res.render( 'view_post', {
     post,
@@ -38,6 +60,59 @@ router.get( '/view/post/:id', withAuth, async ( req, res ) => {
   } );
 
 } );
+
+router.get( '/dashboard/:id', async ( req, res ) => {
+
+  const user_model = await User.findByPk( req.params.id, {
+    include: {
+      all: true
+    }
+  } ).catch(
+    ( err ) => {
+      res.json( err );
+    }
+  );
+  const user = user_model.get( {
+    plain: true
+  } );
+
+  const users_posts = await Post.findAll( {
+    include: {
+      all: true,
+      nested: true,
+    }
+    , where: {
+      user_id: req.params.id
+    }
+  }
+   ).catch( e => console.log(e));
+
+  const posts = users_posts.map( p => p.get( {
+    plain: true
+  } ) );
+
+  const cats_models = await Category.findAll().catch( e => console.log( e ) );
+  const cats = cats_models.map( c => c.get( {
+    plain: true
+  } ) );
+  // res.json(posts)
+  res.render( 'dashboard', {
+    user,
+    cats,
+    posts,
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id
+  } );
+
+} );
+router.post('/reply/:id',withAuth, async (req, res) => {
+  const new_reply = await Reply.create( {...req.body, user_id: req.session.user_id, post_id:req.params.id}  ).catch( e => console.log( e ) );
+
+
+  // res.json( new_reply );
+  res.redirect( '/view/post/' + req.params.id );
+  
+});
 
 router.get( '/post/:id', withAuth, async ( req, res ) => {
   const post_model = await Post.findByPk( req.params.id, {
@@ -55,35 +130,6 @@ router.get( '/post/:id', withAuth, async ( req, res ) => {
   const user = user_model.get( {
     plain: true
   } );
-  const post_topics = [ {
-      value: 3,
-      option: "Tips-n-Tricks from masters"
-    },
-    {
-      value: 2,
-      option: "Ask about general opinion"
-    },
-    {
-      value: 1,
-      option: "Question about how-to-do?"
-    },
-    {
-      value: 4,
-      option: "Ask to the masters"
-    },
-    {
-      value: 5,
-      option: "Fun facts..."
-    },
-    {
-      value: 6,
-      option: "Soft-topic"
-    },
-    {
-      value: 7,
-      option: "None of the above"
-    },
-  ];
   const cats_models = await Category.findAll().catch( e => console.log( e ) );
   const cats = cats_models.map( c => c.get( {
     plain: true
@@ -98,7 +144,6 @@ router.get( '/post/:id', withAuth, async ( req, res ) => {
     user,
     selected_cat,
     cats,
-    post_topics,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
   } )
@@ -174,80 +219,6 @@ router.post( '/post', async ( req, res ) => {
   }
 } );
 
-router.get( '/dashboard/:id', async ( req, res ) => {
-
-  const user_model = await User.findByPk( req.params.id, {
-    include: {
-      all: true
-    }
-  } ).catch(
-    ( err ) => {
-      res.json( err );
-    }
-  );
-  const user = user_model.get( {
-    plain: true
-  } );
-
-  const users_posts = await Post.findAll( {
-    where: {
-      user_id: req.params.id
-    }
-  }, {
-    include: {
-      all: true
-    }
-  } );
-
-  const posts = users_posts.map( p => p.get( {
-    plain: true
-  } ) );
-
-  const post_topics = [ {
-      value: 3,
-      option: "Tips-n-Tricks from masters"
-    },
-    {
-      value: 2,
-      option: "Ask about general opinion"
-    },
-    {
-      value: 1,
-      option: "Question about how-to-do?"
-    },
-    {
-      value: 4,
-      option: "Ask to the masters"
-    },
-    {
-      value: 5,
-      option: "Fun facts..."
-    },
-    {
-      value: 6,
-      option: "Soft-topic"
-    },
-    {
-      value: 7,
-      option: "None of the above"
-    },
-  ];
-  const cats_models = await Category.findAll().catch( e => console.log( e ) );
-  const cats = cats_models.map( c => c.get( {
-    plain: true
-  } ) );
-
-  res.render( 'dashboard', {
-    user,
-    post_topics,
-    cats,
-    posts,
-    logged_in: req.session.logged_in,
-    user_id: req.session.user_id
-
-  } );
-
-} );
 
 // route to get all dishes
 router.get( '/json', async ( req, res ) => {
@@ -266,32 +237,6 @@ router.get( '/json', async ( req, res ) => {
   } ) );
   res.json( all );
 } );
-
-// route to get all dishes
-router.get( '/', async ( req, res ) => {
-  // We find all dishes in the db and set the data equal to dishData
-  const post_models = await Post.findAll( {
-    include: {
-      all: true
-    }
-  } ).catch(
-    ( err ) => {
-      res.json( err );
-    }
-  );
-  // We use map() to iterate over dishData and then add .get({ plain: true }) each object to serialize it.
-  const all = post_models.map( ( p ) => p.get( {
-    plain: true
-  } ) );
-  // We render the template, 'all', passing in dishes, a new array of serialized objects.
-  // res.status(200).json(all);
-  res.render( 'all', {
-    all,
-    logged_in: req.session.logged_in,
-    user_id: req.session.user_id,
-  } );
-} );
-
 
 // Login route
 router.get( '/login', ( req, res ) => {

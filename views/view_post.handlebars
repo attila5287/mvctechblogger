@@ -1,3 +1,5 @@
+{{#each post as |post|}}
+
 <form action="/reply/{{post.id}}" method="post">
     <div class="card bg-dark text-light border-light border-med rounded-xl mt-3 p-4">
         <div class="form-group">
@@ -47,12 +49,12 @@
         <p class="text-xl">
         <i class="text-2xl text-dark far fa-comment-dots fa-pull-left"></i>
             {{c.comment}}
-            <span class="ml-2 text-reg font-italic">
-                by 
-            <i class="fas fa-user-tag"></i>
-            #{{c.user_id}}
-            </span>
         </p>
+        <div class="ml-2 text-right text-reg font-italic">
+            by 
+        {{c.user.name}}
+        <img src="{{c.user.img_url}}" class="img-comment" alt="comment-user">
+        </div>
     {{/each}}
 
     </div>
@@ -64,3 +66,4 @@
     <small class="">No comments yet</small>
 </div>
 {{/if}}
+{{/each}}

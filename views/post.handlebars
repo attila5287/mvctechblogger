@@ -5,16 +5,15 @@
   </div>
   <hr class="border-dark border-med">
 
-  <form 
-    class="update-post rounded-up border-light border-med border-primary mt-0 mb-5 pt-4">
-<div class="form-group ">
-  <input type="text"
-    class="form-control" name="post_id" id="post_id" value="{{post.id}}" readonly>
-</div>
-<div class="form-group ">
-  <input type="text"
-    class="form-control" name="user_id" id="user_id" value="{{post.user_id}}" readonly>
-</div>
+  <form class="update-post rounded-up border-light border-med border-primary mt-0 mb-5 pt-4">
+    <div class="form-group d-none">
+      <input type="text" class="form-control" name="post_id" id="post_id" value="{{post.id}}"
+        readonly>
+    </div>
+    <div class="form-group  d-none">
+      <input type="text" class="form-control" name="user_id" id="user_id" value="{{post.user_id}}"
+        readonly>
+    </div>
 
     <div class="form-group shadow-lg">
       <label for="title">
@@ -23,15 +22,6 @@
       <select class="custom-select" name="category_id" id="category_id">
         {{#each cats as |opt| }}
         <option value="{{opt.id}}">{{opt.category_name}}</option>
-        {{/each}}
-      </select>
-    </div>
-    <div class="form-group shadow-lg">
-      <label for="topic"><i class="fab fa-bimobject pr-0 text-xl"></i> Topic</label>
-      <select class="custom-select" name="topic" id="topic">
-        <option value="{{selected_cat.category_id}}" selected>{{selected_cat.category_name}}</option>
-        {{#each post_topics as |t| }}
-        <option value="{{t.value}}">{{t.option}}</option>
         {{/each}}
       </select>
     </div>
@@ -55,11 +45,12 @@
     </blockquote>
   </form>
 
-<div id = "update_success"  class="alert alert-warning alert-dismissible fade show d-none" role="alert">
-       Update successful! 
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+  <div id="update_success" class="alert alert-warning alert-dismissible fade show d-none"
+    role="alert">
+    Update successful!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
-<script src="/js/update_post.js"></script>
+  <script src="/js/update_post.js"></script>
