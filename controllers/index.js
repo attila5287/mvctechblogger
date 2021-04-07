@@ -15,8 +15,8 @@ const {
 router.post('/reply/:id',withAuth, async (req, res) => {
   new_reply = await Reply.create( {...req.body, user_id: req.session.user_id, post_id:req.params.id}  ).catch( e => console.log( e ) );
 
-  res.json( new_reply );
-
+  // res.json( new_reply );
+  res.redirect( '/view/post/' + req.params.id );
   
 });
 
