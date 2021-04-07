@@ -16,7 +16,7 @@ const {
 router.put( '/post/:id',async ( req, res ) => {
     // const 
     try {
-        const mod = await Post.findByPk( request.params.id, { include: { all: true } } ).catch( e => console.log( e ) );
+        const mod = await Post.findByPk( req.params.id).catch( e => console.log( e ) );
         
         mod.update(req.body);
         const ser = mod.get( { plain: true } );
@@ -69,15 +69,47 @@ router.post('/post', async (req, res) => {
 });
 
 router.get('/post/:id', withAuth, async (req, res) => {
-  const pro_model = await Post.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
+  const post_model = await Post.findByPk( req.params.id, { include: { all: true } } ).catch(e=>console.log(e))
   // res.json( pro.get( { plain: true } ) );
 
-  const pro = pro_model.get( { plain: true } )
+  const post = post_model.get( { plain: true } )
 
   const user_model = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
   const user = user_model.get( { plain: true } );
-  res.render('post', {pro, user, logged_in : req.session.logged_in, user_id : req.session.user_id})
-
+  const post_topics = [ {
+      value: 3,
+      option: "Tips-n-Tricks from masters"
+    },
+    {
+      value: 2,
+      option: "Ask about general opinion"
+    },
+    {
+      value: 1,
+      option: "Question about how-to-do?"
+    },
+    {
+      value: 4,
+      option: "Ask to the masters"
+    },
+    {
+      value: 5,
+      option: "Fun facts..."
+    },
+    {
+      value: 6,
+      option: "Soft-topic"
+    },
+    {
+      value: 7,
+      option: "None of the above"
+    },
+  ];
+  const cats_models = await Category.findAll().catch( e => console.log( e ) );
+  const cats = cats_models.map( c => c.get( { plain: true } ) );
+  const selected_cat_m = await Category.findByPk( post.category_id ).catch( e => console.log( e ) );
+  const selected_cat = selected_cat_m.get( { plain: true } );
+  res.render( 'post', { post, user, selected_cat, cats, post_topics,  logged_in: req.session.logged_in, user_id: req.session.user_id } )
 });
 
 
@@ -95,6 +127,20 @@ router.get( '/dashboard/:id', async ( req, res ) => {
   const user = user_model.get( {
     plain: true
   } );
+
+  const users_posts = await Post.findAll( {
+    where: {
+      user_id: req.params.id
+    }
+  }, {
+    include: {
+      all: true
+    }
+  } );
+
+  const posts = users_posts.map( p => p.get( {
+    plain: true
+  } ) );
 
   const post_topics = [ {
       value: 3,
@@ -125,20 +171,7 @@ router.get( '/dashboard/:id', async ( req, res ) => {
       option: "None of the above"
     },
   ];
-  const users_posts = await Post.findAll( {
-    where: {
-      user_id: req.params.id
-    }
-  }, {
-    include: {
-      all: true
-    }
-  } );
-
-  const posts = users_posts.map( p => p.get( {
-    plain: true
-  } ) );
-  const cats_models = await Category.findAll().catch(e=>console.log(e));
+  const cats_models = await Category.findAll().catch( e => console.log( e ) );
   const cats = cats_models.map( c => c.get( { plain: true } ) );
 
   res.render( 'dashboard', {

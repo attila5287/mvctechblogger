@@ -1,13 +1,15 @@
-const loginFormHandler = async (event) => {
+const update_post = async (event) => {
   event.preventDefault();
 
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const user_id = document.querySelector('#user_id').value.trim();
+  const category_id = document.querySelector('#category_id').value.trim();
+  const title = document.querySelector('#title').value.trim();
+  const content = document.querySelector('#content').value.trim();
 
-  if (email && password) {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
+  if (category_id && title  && content) {
+    const response = await fetch('/post', {
+      method: 'PUT',
+      body: JSON.stringify({ category_id, title, content }),
       headers: { 'Content-Type': 'application/json' },
     });
     
@@ -17,17 +19,17 @@ const loginFormHandler = async (event) => {
       
       alert( 'Refresh the page to unlock user features!' );
       
-      document.getElementById( 'login_success' ).classList.remove( 'd-none' );
-      document.getElementById( 'login_success' ).classList.add( 'show' );
+      document.getElementById( 'update_success' ).classList.remove( 'd-none' );
+      document.getElementById( 'update_success' ).classList.add( 'show' );
 
     } else {
-      alert('Failed to log in.');
+      alert('Failed to update post.');
     }
   }
 };
 
 
 document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector('.update-post')
+  .addEventListener('submit', update_post);
 

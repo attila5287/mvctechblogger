@@ -1,3 +1,61 @@
-<form action="/post"></form>
+  <div class="form-group">
+    <h1 class="text-light mt-5">
+      <i class="title far fa-edit my-0"></i>
+      update posted
+  </div>
+  <hr class="border-dark border-med">
+
+  <form 
+    class="update-post rounded-up border-light border-med border-primary mt-0 mb-5 pt-4">
+<div class="form-group ">
+  <input type="text"
+    class="form-control" name="user_id" id="user_id" aria-describedby="helpId" value="{{post.user_id}}">
+</div>
+
+    <div class="form-group shadow-lg">
+      <label for="title">
+        <i class="fab fa-bimobject pr-0 text-xl"></i> Category</label>
+      <label for="category_id"></label>
+      <select class="custom-select" name="category_id" id="category_id">
+        {{#each cats as |opt| }}
+        <option value="{{opt.id}}">{{opt.category_name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group shadow-lg">
+      <label for="topic"><i class="fab fa-bimobject pr-0 text-xl"></i> Topic</label>
+      <select class="custom-select" name="topic" id="topic">
+        <option value="{{selected_cat.category_id}}" selected>{{selected_cat.category_name}}</option>
+        {{#each post_topics as |t| }}
+        <option value="{{t.value}}">{{t.option}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group shadow-lg">
+      <label for="title"><i class="fab fa-bimobject pr-0 text-xl"></i> Title</label>
+      <input type="text" name="title" id="title" class="form-control form-control-dark"
+        value="{{post.title}}">
+    </div>
+    <div class="form-group shadow-lg">
+      <label for="content"><i class="fab fa-bimobject pr-0 text-xl"></i> Content</label>
+      <textarea type="text" name="content" id="content" class="form-control form-control-dark ">
+    {{post.content}}
+    </textarea>
+    </div>
+    <div class="form-group shadow-lg">
+      <input type="submit" value="Submit"
+        class="px-5 btn btn-primary btn-lg btn-block rounded-xl shadow-lg">
+    </div>
+    <blockquote>
+      <p class="text-light text-ubu text-center text-lg">Post to your blog and live feed on app</p>
+    </blockquote>
+  </form>
+
+<div id = "update_success"  class="alert alert-warning alert-dismissible fade show d-none" role="alert">
+       Update successful! 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
 <script src="/js/update_post.js"></script>
