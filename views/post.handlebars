@@ -9,7 +9,11 @@
     class="update-post rounded-up border-light border-med border-primary mt-0 mb-5 pt-4">
 <div class="form-group ">
   <input type="text"
-    class="form-control" name="user_id" id="user_id" aria-describedby="helpId" value="{{post.user_id}}">
+    class="form-control" name="post_id" id="post_id" value="{{post.id}}" readonly>
+</div>
+<div class="form-group ">
+  <input type="text"
+    class="form-control" name="user_id" id="user_id" value="{{post.user_id}}" readonly>
 </div>
 
     <div class="form-group shadow-lg">
