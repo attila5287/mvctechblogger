@@ -3,6 +3,16 @@ const withAuth = require( '../utils/auth' );
 const router = require( 'express' ).Router();
 const {   User, Post, Reply, Category, Usercat } = require( '../models' );
 
+router.post('/h/reply/:id',withAuth, async (req, res) => {
+  const new_reply = await Reply.create( {...req.body, user_id: req.session.user_id, post_id:req.params.id}  ).catch( e => console.log( e ) );
+
+
+  // res.json( new_reply );
+  res.redirect( '/' );
+  
+});
+
+
 router.post('/reply/:id',withAuth, async (req, res) => {
   const new_reply = await Reply.create( {...req.body, user_id: req.session.user_id, post_id:req.params.id}  ).catch( e => console.log( e ) );
 
