@@ -1,0 +1,66 @@
+<form action="/reply/{{post.id}}" method="post">
+    <div class="card bg-dark text-light border-light border-med rounded-xl mt-3 p-4">
+        <div class="form-group">
+            <label for="comment">
+                <i class="fas fa-comment text-2xl"></i>
+                Type your comment here...</label>
+            <input type="text" name="comment" id="comment" class="form-control form-control-dark"
+                value="A new comment">
+            <input class="btn btn-primary btn-block mt-2" type="submit" class="form-control"
+                value="Submit comment">
+        </div>
+    </div>
+</form>
+<h3 class="text-center mt-4">
+    <i class="fas fa-calendar"> </i>
+    {{format_date post.date_created}}
+    by
+    <i class="fas fa-user-edit"> </i>
+    {{post.user.name }}
+</h3>
+
+<div class="row">
+    <div class="col-3">
+        <img class="img-thumbnail rounded-up" src="{{post.user.img_url}}" alt="post-author">
+    </div>
+    <div class="col-9">
+        <h4 class="text-left border-bottom border-dark">
+            <i class="fas fa-tags m-1"></i>
+            {{post.category.category_name}}
+        </h4>
+        <h1>
+            <i class="fab fa-bimobject text-dark m-1"></i>
+            {{post.title}}
+        </h1>
+    </div>
+</div>
+<hr class="border-dark">
+<p class="text-2xl card-text text-ubu">
+    <i class="fas fa-envelope m-1"></i>
+    {{post.content}}</p>
+<hr class="border-dark">
+{{#if post.replies}}
+<div class="card bg-transparent border-dark border-med rounded-xl p-2">
+    <div class="card-header border-bottom border-dark border-med">Comments:</div>
+    <div class="card-body ">
+    {{#each post.replies as |c|}}
+        <p class="text-xl">
+        <i class="text-2xl text-dark far fa-comment-dots fa-pull-left"></i>
+            {{c.comment}}
+            <span class="ml-2 text-reg font-italic">
+                by 
+            <i class="fas fa-user-tag"></i>
+            #{{c.user_id}}
+            </span>
+        </p>
+    {{/each}}
+
+    </div>
+
+</div>
+{{else}}
+<div class="card-footer py-1 text-right">
+    <i class="fas fa-comment-slash text-reg fa-pull-left"></i>
+    <small class="">No comments yet</small>
+</div>
+{{/if}}

@@ -16,9 +16,9 @@ const update_post = async (event) => {
     
     if (response.ok) {
       console.log('\n >> RESPONSE OK \n');
-      document.location.replace('/');
+      document.location.replace('/dashboard/'+user_id);
       
-      alert( 'Refresh the page to unlock user features!' );
+      alert( 'Post Updated!' );
       
       document.getElementById( 'update_success' ).classList.remove( 'd-none' );
       document.getElementById( 'update_success' ).classList.add( 'show' );
