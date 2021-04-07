@@ -1,3 +1,4 @@
+const paginate = require('express-paginate');
 const withAuth = require( '../utils/auth' );
 // const path = require( 'path' );
 const router = require( 'express' ).Router();
@@ -5,6 +6,7 @@ const post = require( './post' );
 router.use( '/post', post );
 const apiRoutes = require( './api' );
 router.use( '/api', apiRoutes );
+router.use( paginate.middleware( 20, 50 ) );
 
 const {
   User,
@@ -18,21 +20,28 @@ router.get( '/', async ( req, res ) => {
 
  
   const post_m = await Post.findAll( {
+    limit: req.query.limit, offset: req.skip,
     include: {
       all: true,
       nested: true,
-    }
+    },
   }
    ).catch( e => console.log(e));
-
+   const itemCount = post_m.count;
+   const pageCount = Math.ceil(post_m.count / req.query.limit);
+   
+  
   const all = post_m.map(p=> p.get( {plain: true} ));
  
   
-  // res.status(200).json(all);
+  // res.status(200).json(post_m);
   res.render( 'all', {
-    all,
+      all,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id,
+    pageCount,
+    itemCount,
+    pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
   } );
 } );
 
