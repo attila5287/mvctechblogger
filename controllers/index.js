@@ -170,16 +170,16 @@ router.put( '/post/:id', async ( req, res ) => {
 // need this for select menu to load user's posts
 router.get( '/api/posts/user/:id', async ( req, res ) => {
   try {
-    const models = await Post.findAll( {
-      where: {
-        user_id: req.params.id,
-        // user_id: req.session.user_id,
-      }
-    }, {
-      include: {
-        all: true
-      }
-    } ).catch( e => console.log( e ) );
+  const models = await Post.findAll( {
+    include: {
+      all: true,
+      nested: true,
+    }
+    , where: {
+      id: req.params.id
+    }
+  }
+   ).catch( e => console.log(e));
 
     const all = models.map( p => p.get( {
       plain: true
@@ -211,7 +211,7 @@ router.post( '/post', async ( req, res ) => {
     const new_post = await Post.create( {
       ...req.body,
       user_id: curr_user_id,
-    } );
+    } ).catch( e => console.log(e));
     // res.status( 200 ).json( new_post );
     res.redirect( '/dashboard/' + curr_user_id );
   } catch ( err ) {
@@ -295,7 +295,7 @@ router.get( '/pros', async ( req, res ) => {
       include: {
         all: true
       }
-    } );
+    } ).catch( e => console.log(e));
     // res.status( 200 ).json( pros );
     const all = pros.map( ( p ) => p.get( {
       plain: true
