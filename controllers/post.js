@@ -20,17 +20,18 @@ router.get( '/view/:id', withAuth, async ( req, res ) => {
       all: true,
       nested: true,
     }
-    , where: {
-      id: req.params.id
-    }
   }
    ).catch( e => console.log(e));
 
   const post = post_m.map(p=> p.get( {plain: true} ));
+
+  const user_m = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
+  const user = user_m.get( { plain: true } );
   
-  // res.json( { 'message': 'success' } );
+  // res.json( post );
   res.render( 'view_post', {
     post,
+    user,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id
   } );

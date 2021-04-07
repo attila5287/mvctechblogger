@@ -15,21 +15,19 @@ const {
 } = require( '../models' );
 
 router.get( '/', async ( req, res ) => {
-  // We find all dishes in the db and set the data equal to dishData
-  const post_models = await Post.findAll( {
+
+ 
+  const post_m = await Post.findAll( {
     include: {
-      all: true
+      all: true,
+      nested: true,
     }
-  } ).catch(
-    ( err ) => {
-      res.json( err );
-    }
-  );
-  // We use map() to iterate over dishData and then add .get({ plain: true }) each object to serialize it.
-  const all = post_models.map( ( p ) => p.get( {
-    plain: true
-  } ) );
-  // We render the template, 'all', passing in dishes, a new array of serialized objects.
+  }
+   ).catch( e => console.log(e));
+
+  const all = post_m.map(p=> p.get( {plain: true} ));
+ 
+  
   // res.status(200).json(all);
   res.render( 'all', {
     all,

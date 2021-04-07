@@ -2,59 +2,38 @@
     <i class="fas fa-rss"></i>
     All Posts</h1>
 
-<div class="card-columns">
-
     {{#each all as  |p|}}
-
-    <div class="card bg-primary rounded-2xl mx-0 border-0">
-        <div class="card-header pt-0 text-right font-weight-bold">
-            <i class="fab fa-bimobject text-2xl text-light fa-pull-left m-1"></i>
-            <a href="/post/view/{{p.id}}" class="text-light ">
-            {{p.category.category_name}}
-            </a>
-            </div>
-        <img class="card-img-top" src="{{p.user.img_url}}" alt="post-author">
-        <div class="card-body bg-light">
-            <div class="card-text text-right">
-                <i class="fas fa-calendar"> </i>
-                {{format_date p.date_created}}
-                <span class="text-right font-weight-bold font-italic text-sm">
-                    by
-                    <i class="fas fa-user-edit"> </i>
-                    {{p.user.name }}
-                </span>
-            </div>
-
-            <h6 class="card-title text-ubu text-dark font-weight-bold">
-                <a href="/post/view/{{p.id}}">  {{p.title}}  </a>
-            </h6>
-            <small class="card-text text-ubu">{{p.content}}</small>
-        </div>
+<div class="media bg-body border-dark my-5 p-1">
+    <a class="d-flex align-self-center mr-3" href="/post/view/{{p.id}}">
+          <img class="img-author rounded-2xl" src="{{p.user.img_url}}" alt="">
+    </a>
+    <div class="media-body text-left">
+        <h2 class="border-bottom border-dark"><i class="fab fa-bimobject mx-2"></i>{{p.title}}</h2>
+        <i class="fas fa-calendar-alt m-2"> {{format_date p.date_created}} </i>
+        <i class="fas fa-user m-2"> {{p.user.name}} </i>
+        <p class="text-lg font-italic"><i class="fas fa-envelope mx-2"></i>{{p.content}}</p>
         {{#if p.replies}}
-        <div class="card-footer text-right py-0">
-            <button class="btn btn-primary p-0" type="button" data-toggle="collapse"
-                data-target="#replies_for_post_{{p.id}}" aria-expanded="false"
+        <button class="btn btn-outline-dark border-0 btn-block text-norm p-0" type="button" data-toggle="collapse"
+                data-target=".replies_for_post_{{p.id}}" aria-expanded="false"
                 aria-controls="replies_for_post_{{p.id}}">
-                <b class="text-sm">Show/Hide</b>
-                <i class="far fa-comment-dots text-2xl"></i>
+                <i class="fas fa-comment-dots text-xl py-2"></i>
+                <i class="text-lg"> Show/Hide Comments</i>
             </button>
             {{#each p.replies as |c|}}
-
-            <div class="text-right text-secondary collapse" id="replies_for_post_{{p.id}}">
-                <i class="text-2xl text-secondary far fa-comment-dots fa-pull-left"></i>
-                <p class="text-sm text-light">
-                    {{c.comment}}
-                </p>
-            </div>
+                <div class="media collapse show my-3 replies_for_post_{{p.id}}">
+                    <div class="media-body p-2">
+                    <i class="fas fa-comment-dots text-xl py-2"></i>
+                        {{c.comment}}
+                    </div>
+                    <a class="d-flex disabled" >
+                        <img class="img-comment rounded-2xl" src="{{c.user.img_url}}" alt="">
+                    </a>
+                </div>
             {{/each}}
-        </div>
         {{else}}
-        <div class="card-footer py-1 text-right">
-            <i class="fas fa-comment-slash text-reg fa-pull-left"></i>
-            <small class="">No comments yet</small>
-        </div>
+        <p class="font-italic">No comments for this post..</p>
         {{/if}}
+    </div>
 </div>
 
-{{/each}}
-</div>
+    {{/each}}

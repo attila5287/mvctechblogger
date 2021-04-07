@@ -1,69 +1,88 @@
-{{#each post as |post|}}
-
-<form action="/post/reply/{{post.id}}" method="post">
-    <div class="card bg-dark text-light border-light border-med rounded-xl mt-3 p-4">
-        <div class="form-group">
-            <label for="comment">
-                <i class="fas fa-comment text-2xl"></i>
-                Type your comment here...</label>
-            <input type="text" name="comment" id="comment" class="form-control form-control-dark"
-                value="A new comment">
-            <input class="btn btn-primary btn-block mt-2" type="submit" class="form-control"
-                value="Submit comment">
+<div class="card bg-primary text-light border-primary border-med rounded-2xl mt-3">
+    <div class="card-header py-0">
+        <div class="fa-stack fa-2x">
+            <i class="fa-stack-2x fas fa-comment"></i>
+            <i class="fa-stack-1x fas fa-plus text-primary"></i>
         </div>
+        <span class="text-xl">Type your comment here...</span>
     </div>
-</form>
-<h3 class="text-center mt-4">
-    <i class="fas fa-calendar"> </i>
-    {{format_date post.date_created}}
-    by
-    <i class="fas fa-user-edit"> </i>
-    {{post.user.name }}
-</h3>
-
-<div class="row">
-    <div class="col-3">
-        <img class="img-thumbnail rounded-up" src="{{post.user.img_url}}" alt="post-author">
+    <div class="card-body bg-body text-light">
+        <form action="/post/reply/{{post.id}}" method="post">
+            <div class="form-group">
+                <input type="text" name="comment" id="comment" class="form-control "
+                    value="A new comment">
+                <input class="btn btn-primary btn-block mt-2" type="submit" class="form-control"
+                    value="Submit comment">
+            </div>
+        </form>
     </div>
-    <div class="col-9">
-        <h4 class="text-left border-bottom border-dark">
-            <i class="fas fa-tags m-1"></i>
-            {{post.category.category_name}}
-        </h4>
-        <h1>
-            <i class="fab fa-bimobject text-dark m-1"></i>
-            {{post.title}}
-        </h1>
+    <div class="card-footer py-0 text-right">
+        by {{user.name}}
+        <img src="{{user.img_url}}" class="img-comment" alt="comment-user">
     </div>
 </div>
-<hr class="border-dark">
-<p class="text-2xl card-text text-ubu">
-    <i class="fas fa-envelope m-1"></i>
-    {{post.content}}</p>
-<hr class="border-dark">
+{{#each post as |post|}}
+
+<div class="card border-info border-med bg-body rounded-xl my-4">
+    <div class="card-header text-2xl border-bottom border-med border-info">
+        <i class="fab fa-bimobject text-dark m-1"></i>
+        {{post.title}}
+    </div>
+    <div class="card-body bg-body">
+        <p class="card-text text-lg card-text text-ubu">
+            <i class="fas fa-envelope text-dark m-1"></i>
+            {{post.content}}</p>
+    </div>
+    <div
+        class="card-footer d-flex flex-row justify-content-between align-items-center  text-right text-lg py-0">
+        <span>
+            <i class="fa-fw fas fa-tags m-1"></i>
+            {{post.category.category_name}}
+
+        </span>
+        <span>
+            <i class="fa-fw fas fa-calendar"> </i>
+            {{format_date post.date_created}}
+
+        </span>
+        <span>
+            by {{post.user.name }}
+            <img class="img-author rounded-up" src="{{post.user.img_url}}" alt="post-author">
+
+        </span>
+    </div>
+
+</div>
+
+    <button class="btn btn-info btn-block mb-4" type="button" data-toggle="collapse" data-target="#comments" aria-expanded="false"
+            aria-controls="comments">
+        <i class="fas fa-chevron-down"></i>
+        Show/Hide Comments
+    </button>
+    
 {{#if post.replies}}
-<div class="card bg-transparent border-dark border-med rounded-xl p-2">
-    <div class="card-header border-bottom border-dark border-med">Comments:</div>
-    <div class="card-body ">
-    {{#each post.replies as |c|}}
+<div class="collapse show card bg-dark border-dark border-med rounded-xl" id="comments">
+    <div class="card-header text-light">Comments:</div>
+    <div class="card-body bg-body">
+        {{#each post.replies as |c|}}
         <p class="text-xl">
-        <i class="text-2xl text-dark far fa-comment-dots fa-pull-left"></i>
+            <i class="text-2xl text-dark far fa-comment-dots fa-pull-left"></i>
             {{c.comment}}
         </p>
         <div class="ml-2 text-right text-reg font-italic">
-            by 
-        {{c.user.name}}
-        <img src="{{c.user.img_url}}" class="img-comment" alt="comment-user">
+            by
+            {{c.user.name}}
+            <img src="{{c.user.img_url}}" class="img-comment" alt="comment-user">
         </div>
-    {{/each}}
+        {{/each}}
 
     </div>
 
 </div>
 {{else}}
-<div class="card-footer py-1 text-right">
+<p class="text-lg">
     <i class="fas fa-comment-slash text-reg fa-pull-left"></i>
     <small class="">No comments yet</small>
-</div>
+</p>
 {{/if}}
 {{/each}}

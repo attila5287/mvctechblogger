@@ -8,26 +8,26 @@ const reply_j = require('./json/replies.json');
 const usercat_j = require('./json/usercats.json');
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
 
-  const users = await User.bulkCreate(user_j, {
-    individualHooks: true,
-    returning: true,
-  });
+  // const users = await User.bulkCreate(user_j, {
+  //   individualHooks: true,
+  //   returning: true,
+  // });
   
-  const cats = await Category.bulkCreate(cats_j, {
-  }).catch(e => console.log(e));
+  // const cats = await Category.bulkCreate(cats_j, {
+  // }).catch(e => console.log(e));
   
-  const posts = await Post.bulkCreate(post_j, {
-  }).catch(e => console.log(e));
+  // const posts = await Post.bulkCreate(post_j, {
+  // }).catch(e => console.log(e));
+  
+  
+  // const usercategories = await Usercat.bulkCreate(usercat_j, {
+  //   returning: true,
+  // }).catch(e => console.log(e));
   
   
   const replies = await Reply.bulkCreate(reply_j, {
-  }).catch(e => console.log(e));
-  
-  
-  const usercategories = await Usercat.bulkCreate(usercat_j, {
-    returning: true,
   }).catch(e => console.log(e));
   
   process.exit(0);
