@@ -7,13 +7,13 @@
     color: silver;
   }
 </style>
-<h4 class="d-flex flex-row justify-content-center text-center text-ubu align-items-center text-2l">
+<h1 class="d-flex flex-row justify-content-center text-center text-ubu align-items-center text-2l">
   Welcome
   <span>
-    <img src="{{user.img_url}}" class="img-thumbnail bg-transparent border-0 rounded-2xl" alt="user-img"> </span>
+    <img src="{{user.img_url}}" class="img-thumbnail bg-transparent border-0 rounded-2xl mx-5 mt-2" alt="user-img"> </span>
 
   {{user.name}}
-</h4>
+</h1>
 <style>
   .btn-group .far {
     font-size: 2rem;
@@ -24,21 +24,78 @@
   }
 </style>
 
-<p class="text-center mb-0">New Post</p>
+<p class="text-center mb-0 mt-4">
+  <i class="fas fa-info-circle    "></i>
+  Write a blog content...</p>
 <button class="px-5 btn btn-dark btn-block shadow-lg rounded-xl" type="button"
   data-toggle="collapse" data-target="#post_content" aria-expanded="false"
   aria-controls="post_content">
   <h1 class="far fa-paper-plane"></h1>
+  New Post
 </button>
-<p class="text-center mb-0">Update Posted</p>
-
+<p class="text-center mb-0 mt-4">
+  <i class="fas fa-info-circle    "></i>
+  Update existing content posted by logged-in user...</p>
 <button class="px-5 btn btn-primary btn-block shadow-lg rounded-xl" type="button"
   data-toggle="collapse" data-target="#posted_content" aria-expanded="false"
   aria-controls="posted_content">
   <h1 class="far fa-edit"></h1>
+  Update Post
 </button>
 
+<p class="text-center mb-0 mt-4">
+  <i class="fas fa-info-circle    "></i>
+  Edit user info...</p>
+<button class="px-5 btn btn-info btn-block shadow-lg rounded-xl" type="button"
+  data-toggle="collapse" data-target="#edit_user" aria-expanded="false"
+  aria-controls="edit_user">
+  <h1 class="fas fa-user-cog"></h1>
+  Edit <i class="fa fa-user" aria-hidden="true"></i>
+</button>
 
+<div class="collapse" id="edit_user">
+  <div class="form-group">
+    <h1 class="text-light mt-5">
+      <i class="title fas fa-user-cog my-0"></i>
+      account info
+  </div>
+  <hr class="border-info border-med">
+  <form action="/api/users/edit/{{user.id}}" method="post" class="p-4 rounded-up border-light bg-info border-med border-primary mt-0 mb-5 pt-4 text-light" >
+
+  <div class="form-group">
+    <label for="name">
+      <i class="fas fa-id-card-alt"></i>
+      Name</label>
+    <input type="text" class="form-control form-control-dark" name="name" id="name" value="{{user.name}}">
+  </div>
+  <div class="form-group">
+    <label for="email">
+      <i class="far fa-envelope" aria-hidden="true"></i>
+      Email</label>
+    <input type="text" class="form-control form-control-dark" name="email" id="email" value="{{user.email}}">
+  </div>
+  <div class="form-group">
+    <label for="gender">
+      <i class="fas fa-venus-mars" aria-hidden="true"></i>
+      Gender
+    </label>
+    <select class="custom-select form-control-dark" name="gender" id="gender">
+      <option value="{{user.gender}}" selected>{{user.gender}}</option>
+      <option value="m">m</option>
+      <option value="f">f</option>
+    </select>
+  </div>
+<div class="form-group">
+  <label for="img_url">
+    <i class="fas fa-images"></i>
+    Image Url</label>
+  <input type="text"
+    class="form-control form-control-dark" name="img_url" id="img_url" aria-describedby="helpId" value="{{user.img_url}}">
+</div>
+  <button type="submit" class="btn btn-success btn-block rounded-xl btn-lg">Update</button>
+  </form>
+
+</div>
 <div class="collapse" id="post_content">
   <div class="form-group">
     <h1 class="text-light mt-5">
@@ -85,7 +142,7 @@
 <div class="collapse show" id="posted_content">
   <div class="form-group">
     <i class="title far fa-edit my-0"></i>
-    update posted
+    User's Posts
   </div>
   <hr class="border-primary border-med">
 

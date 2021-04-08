@@ -2,6 +2,16 @@ const withAuth = require('../../utils/auth');
 const router = require( 'express' ).Router();
 const { User } = require('../../models');
 
+router.post( '/edit/:id', async ( req, res ) => {
+  const updated_user = await User.update( req.body, {
+    where: {
+      id: req.params.id,
+    },
+  } ).catch( e => console.log( e ) );
+
+  res.redirect(req.header('Referrer'));
+});
+
 router.post('/', async (req, res) => {
   try {
 
