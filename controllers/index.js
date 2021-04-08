@@ -6,7 +6,7 @@ const post = require( './post' );
 router.use( '/post', post );
 const apiRoutes = require( './api' );
 router.use( '/api', apiRoutes );
-router.use( paginate.middleware( 20, 50 ) );
+router.use( paginate.middleware( 5, 50 ) );
 
 const {
   User,
@@ -28,8 +28,9 @@ router.get( '/', async ( req, res ) => {
   }
    ).catch( e => console.log(e));
    const itemCount = post_m.count;
-   const pageCount = Math.ceil(post_m.count / req.query.limit);
-   
+  console.log('itemC :>> ', itemCount);
+  const pageCount = Math.ceil( post_m.count / req.query.limit );
+   console.log('\npagecount :>> ', pageCount);
   
   const all = post_m.map(p=> p.get( {plain: true} ));
  

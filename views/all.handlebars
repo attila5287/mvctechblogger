@@ -2,68 +2,86 @@
     <i class="fas fa-rss"></i>
     All Posts</h1>
 <nav aria-label="...">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item"><a class="page-link" href="/?page=1&limit=20">1</a></li>
-    <li class="page-item"><a class="page-link" href="/?page=2&limit=20">2</a></li>
-    <li class="page-item"><a class="page-link" href="/?page=3&limit=20">3</a></li>
-    <li class="page-item"><a class="page-link" href="/?page=4&limit=20">4</a></li>
-    <li class="page-item"><a class="page-link" href="/?page=5&limit=20">5</a></li>
-  </ul>
+    <ul class="pagination pagination-lg justify-content-center">
+        <li class="page-item"><a class="page-link" href="/?page=1&limit=10">1</a></li>
+        <li class="page-item"><a class="page-link" href="/?page=2&limit=10">2</a></li>
+        <li class="page-item"><a class="page-link" href="/?page=3&limit=10">3</a></li>
+        <li class="page-item"><a class="page-link" href="/?page=4&limit=10">4</a></li>
+        <li class="page-item"><a class="page-link" href="/?page=5&limit=10">5</a></li>
+    </ul>
 </nav>
-    <i>
+<i>
     <i class="fas fa-info-circle text-lg"></i>
-        Click on author's image or post title to view content individually on a new page where you will be leave a comment...</i>
+    Click on author's image or post title to view post individually on a new page...</i>
 
-    {{#each all as  |p|}}
+{{#each all as  |p|}}
+<div class="border-light border-med p-2">
 
-<div class="media bg-body border-dark my-5 p-1">
-    <a class="d-flex align-self-center mr-3" href="/post/view/{{p.id}}">
-          <img class="img-author rounded-2xl" src="{{p.user.img_url}}" alt="">
-    </a>
-    <div class="media-body text-left">
-        <a  href="/post/view/{{p.id}}"class="post-title text-2xl text-dark border-bottom border-dark"><i class="fab fa-bimobject mx-2"></i>{{p.title}}</a>
-        <hr class="my-0">
-        <i class="fas fa-calendar-alt m-2"> {{format_date p.date_created}} </i>
-        <i class="fas fa-user m-2"> {{p.user.name}} </i>
-        <p class="text-lg font-italic"><i class="fas fa-envelope mx-2"></i>{{p.content}}</p>
-        {{#if p.replies}}
-        <button class="btn btn-outline-dark border-0 btn-block text-norm p-0" type="button" data-toggle="collapse"
-                data-target=".replies_for_post_{{p.id}}" aria-expanded="false"
-                aria-controls="replies_for_post_{{p.id}}">
-                <i class="fas fa-comment-dots text-xl py-2"></i>
+    <div class="media bg-body border-light rounded-4xl my-3 p-2">
+        <a class="d-flex align-self-center mr-3" href="/post/view/{{p.id}}">
+            <img class="img-author rounded-2xl bg-dark p-1" src="{{p.user.img_url}}" alt="">
+        </a>
+        <div class="media-body bg-light text-left rounded-4xl p-4">
+            <a href="/post/view/{{p.id}}" class="post-title text-2xl text-dark"><i
+                    class="fab fa-bimobject text-3xl mx-2"></i>{{p.title}}</a>
+            <hr class="my-0 border-secondary border-med">
+            <p class="text-lg font-italic"><i class="fas fa-envelope mx-2"></i>{{p.content}}</p>
+            <p class="text-right my-0">
+                <i class="fas fa-calendar-alt m-2"> {{format_date p.date_created}} </i>
+                <i class="fas fa-user m-2"> {{p.user.name}} </i>
+            </p>
+            {{#if p.replies}}
+            <button class="btn btn-outline-dark border-0 btn-block text-norm p-0" type="button"
+                data-toggle="collapse" data-target=".replies_for_post_{{p.id}}"
+                aria-expanded="false" aria-controls="replies_for_post_{{p.id}}">
+                <i class="fas fa-comments text-xl py-2"></i>
                 <i class="text-lg"> Show/Hide Comments</i>
             </button>
             {{#each p.replies as |c|}}
-                <div class="media collapse show my-3 replies_for_post_{{p.id}}">
-                    <div class="media-body p-2">
-                    <i class="fas fa-comment-dots text-xl py-2"></i>
-                        {{c.comment}}
-                    </div>
-                    <a class="d-flex disabled" >
-                        <img class="img-comment rounded-2xl" src="{{c.user.img_url}}" alt="">
-                    </a>
+            <div
+                class="media collapse show my-1 bg-silver rounded-2xl p-0 replies_for_post_{{p.id}}">
+                <div class="media-body font-italic text-sm p-2">
+                    <i class="far fa-comment-dots text-xl fa-pull-left mt-2"></i>
+                    {{c.comment}}
+                    <span class="font-weight-bold float-right">
+                        by {{c.user.name}}
+                        @ {{format_date c.date_created}}
+                    </span>
                 </div>
+                <a class="d-flex align-self-center  disabled">
+                    <img class="img-comment rounded-circle" src="{{c.user.img_url}}" alt="">
+                </a>
+            </div>
             {{/each}}
-                <div class="media collapse show my-3 replies_for_post_{{p.id}}">
-                    <div class="media-body p-2">
-                        <form action="/post/h/reply/{{p.id}}" method="post">
-                            <div class="form-group">
-                                <input type="text" name="comment" id="comment" class="form-control "
-                                    value="A new comment">
-                                <input class="btn btn-primary btn-block mt-2" type="submit" class="form-control"
-                                    value="Submit comment">
-                            </div>
-                        </form>
-                    </div>
-                    <a class="d-flex disabled" >
-                        <img class="img-comment rounded-2xl" src="{{c.user.img_url}}" alt="">
-                    </a>
+            <div class="media collapse show my-3 replies_for_post_{{p.id}}">
+                <div class="media-body p-2">
+                    <form action="/post/h/reply/{{p.id}}" method="post">
+                        <div class="form-group">
+                            <input type="text" name="comment" id="comment" class="form-control "
+                                value="A new comment">
+                            <input class="btn btn-primary btn-block mt-2" type="submit"
+                                class="form-control" value="Submit comment">
+                        </div>
+                    </form>
                 </div>
+                <a class="d-flex disabled">
+                    <img class="img-comment rounded-2xl" src="{{c.user.img_url}}" alt="">
+                </a>
+            </div>
 
-        {{else}}
-        <p class="font-italic">No comments for this post..</p>
-        {{/if}}
+            {{else}}
+            <p class="font-italic">
+                <i class="fas fa-comment-slash text-lg"></i>
+                No comments for this post..</p>
+            {{/if}}
+        </div>
     </div>
 </div>
+<p class="text-lg text-center px-0 mx-1 text-dark" href="https://mvctechblogger.herokuapp.com">
+    <span
+        class="text-secondary border-top border-dark border-thk pt-0 font-weight-bold rounded-lg font-italic">Tech</span>
+    <i class="fab fa-bimobject mx-0 px-2 text-light bg-dark py-1 rounded-xl"></i><u
+        class="font-weight-bold">logger</u>
+</p>
 
-    {{/each}}
+{{/each}}

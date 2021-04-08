@@ -1,4 +1,4 @@
-<form class="signup-form rounded-2xl text-xl font-italic p-5 mx-5 mt-5">
+<form class="signup-form bg-dark text-light rounded-2xl text-xl font-italic p-5 mx-5 mt-5">
   <div class="form-group">
     <h1>
       <i class="title fas fa-user-plus bg-primary text-dark p-1 rounded-xl"></i>
@@ -18,8 +18,11 @@
     <label for="gender">
       <i class="fas fa-venus-mars"></i>Gender
     </label>
-    <input type="text"
-      class="form-control" name="gender" id="gender" placeholder="Type gender m or f">
+      <select class="form-control form-control-dark" name="gender" id="gender">
+        <option value="m">
+          <i class="fas fa-mars"></i> m</option>
+        <option value="f"><i class="fas fa-venus"></i>f</option>
+      </select>
   </div>
   <div class="form-group">
     <label for="email-signup">
