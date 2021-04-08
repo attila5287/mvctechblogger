@@ -19,6 +19,7 @@
           body {
               font-size: 1rem;
           }
+
           a.post-title {
               text-decoration: none;
           }
@@ -35,9 +36,11 @@
           .bg-navy {
               background-color: rgb(59, 84, 167);
           }
+
           .bg-body {
               background-color: #222;
           }
+
           .bg-silver {
               background-color: rgb(202, 204, 204);
           }
@@ -79,9 +82,11 @@
           .text-2xl {
               font-size: 2rem;
           }
+
           .text-3xl {
               font-size: 3rem;
           }
+
           .text-4xl {
               font-size: 4rem;
           }
@@ -101,9 +106,11 @@
           .rounded-3xl {
               border-radius: 1.5rem;
           }
+
           .rounded-4xl {
               border-radius: 2.0rem;
           }
+
           .rounded-up {
               border-radius: 1.5rem;
           }
@@ -158,27 +165,31 @@
           .text-sm {
               font-size: 0.85rem;
           }
-          .img-comment {
-              max-width : 3rem;
-              max-height : 3rem;
-              border-radius: 1rem;
-          }
-          .img-author {
-              max-width :  5rem;
-              max-height : 5rem;
-              border-radius: 1rem;
-          }
-          .fa-stack{
-            font-size: 1.0rem;
-            }
-          .post-details p {
-            font-size: 2rem;
-            margin-bottom: 0px;
-            }
-            .text-norm{
-                color: #333;
-            }
 
+          .img-comment {
+              max-width: 3rem;
+              max-height: 3rem;
+              border-radius: 1rem;
+          }
+
+          .img-author {
+              max-width: 5rem;
+              max-height: 5rem;
+              border-radius: 1rem;
+          }
+
+          .fa-stack {
+              font-size: 1.0rem;
+          }
+
+          .post-details p {
+              font-size: 2rem;
+              margin-bottom: 0px;
+          }
+
+          .text-norm {
+              color: #333;
+          }
       </style>
 
       <body class="bg-body">
@@ -205,31 +216,32 @@
                       </li>
                       {{#if logged_in}}
                       <li class="nav-item">
-                          <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}">
+                          <a class="nav-link px-0 mx-1" href="/dashboard/{{user_id}}"
+                              data-toggle="tooltip" title="new post, update post, update user info">
                               <i class="fas fa-tachometer-alt"></i>
                               Dashboard
                           </a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link px-0 mx-1">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-info border-0 pr-5" data-toggle="modal" data-target="#logout_modal">
-                            <i class="fas fa-sign-out-alt text-secondary"></i>
-                            <span class="text-secondary font-weight-bold font-italic">
-                            Logout
+                              <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-outline-info border-0 pr-5"
+                                  data-toggle="modal" data-target="#logout_modal">
+                                  <i class="fas fa-sign-out-alt text-secondary"></i>
+                                  <span class="text-secondary font-weight-bold font-italic">
+                                      Logout
+                                  </span>
+                              </button>
 
-                            </span>
-                            </button>
-                              
                           </a>
                       </li>
 
                       {{else}}
                       <li class="nav-item">
-                      <a class="nav-link px-0 mx-1" href="/login">
-                          <i class="fas fa-sign-in-alt"></i>
-                          <span class="text-ubu">Login</span>
-                      </a>
+                          <a class="nav-link px-0 mx-1" href="/login">
+                              <i class="fas fa-sign-in-alt"></i>
+                              <span class="text-ubu">Login</span>
+                          </a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link px-0 mx-1" href="/signup">
@@ -263,29 +275,32 @@
                       Sequelize, MySQL</b></span>
           </footer>
 
-            <!-- Modal -->
-            <div class="modal fade" id="logout_modal" tabindex="-1" role="dialog" aria-labelledby="logout_modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logout_modalLabel">Confirm...</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to quit?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <form method="POST" action="/api/users/logout" class="text-nowrap my-0 py-0">
-                        <input type="submit" value="Logout"
-                            class="btn btn-sm btn-danger">
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
+          <!-- Modal -->
+          <div class="modal fade" id="logout_modal" tabindex="-1" role="dialog"
+              aria-labelledby="logout_modalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="logout_modalLabel">Confirm...</h5>
+                          <button type="button" class="close" data-dismiss="modal"
+                              aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          Are you sure you want to quit?
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary"
+                              data-dismiss="modal">Close</button>
+                          <form method="POST" action="/api/users/logout"
+                              class="text-nowrap my-0 py-0">
+                              <input type="submit" value="Logout" class="btn btn-sm btn-danger">
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js">
           </script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
