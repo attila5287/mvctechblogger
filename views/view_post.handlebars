@@ -1,17 +1,17 @@
-<div class="card bg-primary text-light border-primary border-med rounded-2xl mt-3">
+<div class="card bg-dark text-light border-dark border-med rounded-2xl mt-3">
     <div class="card-header py-0">
         <div class="fa-stack fa-2x">
             <i class="fa-stack-2x fas fa-comment"></i>
-            <i class="fa-stack-1x fas fa-plus text-primary"></i>
+            <i class="fa-stack-1x fas fa-plus text-dark"></i>
         </div>
         <span class="text-xl">Type your comment here...</span>
     </div>
     <div class="card-body bg-body text-light">
-        <form action="/post/reply/{{post.id}}" method="post">
+        <form action="/post/reply/{{post_id}}" method="post">
             <div class="form-group">
                 <input type="text" name="comment" id="comment" class="form-control "
                     value="A new comment">
-                <input class="btn btn-primary btn-block mt-2" type="submit" class="form-control"
+                <input class="btn btn-dark btn-block mt-2" type="submit" class="form-control"
                     value="Submit comment">
             </div>
         </form>
@@ -23,13 +23,13 @@
 </div>
 {{#each post as |post|}}
 
-<div class="card border-info border-med bg-body rounded-xl my-4">
-    <div class="card-header text-2xl border-bottom border-med border-info">
+<div class="card border-0 bg-info text-light rounded-xl my-4">
+    <div class="card-header text-2xl">
         <i class="fab fa-bimobject text-dark m-1"></i>
         {{post.title}}
     </div>
-    <div class="card-body bg-body">
-        <p class="card-text text-lg card-text text-ubu">
+    <div class="card-body bg-silver text-norm">
+        <p class="card-text text-lg text-ubu font-italic">
             <i class="fas fa-envelope text-dark m-1"></i>
             {{post.content}}</p>
     </div>
@@ -53,16 +53,17 @@
     </div>
 
 </div>
+<button class="btn btn-outline-light border-0 btn-block btn-lg  mb-4" type="button"
+    data-toggle="collapse" data-target="#comments" aria-expanded="false" aria-controls="comments">
+    <i class="fas fa-chevron-down"></i>
+    Show/Hide Comments
+</button>
 
-    <button class="btn btn-info btn-block mb-4" type="button" data-toggle="collapse" data-target="#comments" aria-expanded="false"
-            aria-controls="comments">
-        <i class="fas fa-chevron-down"></i>
-        Show/Hide Comments
-    </button>
-    
 {{#if post.replies}}
-<div class="collapse show card bg-dark border-dark border-med rounded-xl" id="comments">
-    <div class="card-header text-light">Comments:</div>
+<div class="collapse show card bg-light border-light border-med rounded-xl" id="comments">
+    <div class="card-header">
+        <i class="fas fa-comments text-2xl"></i>
+        Comments:</div>
     <div class="card-body bg-body">
         {{#each post.replies as |c|}}
         <p class="text-xl">

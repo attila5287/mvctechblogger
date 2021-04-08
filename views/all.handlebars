@@ -3,11 +3,11 @@
     All Posts</h1>
 <nav aria-label="...">
     <ul class="pagination pagination-lg justify-content-center">
-        <li class="page-item"><a class="page-link" href="/?page=1&limit=10">1</a></li>
-        <li class="page-item"><a class="page-link" href="/?page=2&limit=10">2</a></li>
-        <li class="page-item"><a class="page-link" href="/?page=3&limit=10">3</a></li>
-        <li class="page-item"><a class="page-link" href="/?page=4&limit=10">4</a></li>
-        <li class="page-item"><a class="page-link" href="/?page=5&limit=10">5</a></li>
+        <li class="page-item"><a class="page-link bg-info border-0 text-light" href="/?page=1&limit=10">1</a></li>
+        <li class="page-item"><a class="page-link bg-info border-0 text-light" href="/?page=2&limit=10">2</a></li>
+        <li class="page-item"><a class="page-link bg-info border-0 text-light" href="/?page=3&limit=10">3</a></li>
+        <li class="page-item"><a class="page-link bg-info border-0 text-light" href="/?page=4&limit=10">4</a></li>
+        <li class="page-item"><a class="page-link bg-info border-0 text-light" href="/?page=5&limit=10">5</a></li>
     </ul>
 </nav>
 <i>
@@ -54,13 +54,19 @@
                 </a>
             </div>
             {{/each}}
+
+            {{else}}
+            <p class="font-italic">
+                <i class="fas fa-comment-slash text-lg"></i>
+                No comments for this post..</p>
+            {{/if}}
             <div class="media collapse show my-3 replies_for_post_{{p.id}}">
                 <div class="media-body p-2">
                     <form action="/post/h/reply/{{p.id}}" method="post">
                         <div class="form-group">
                             <input type="text" name="comment" id="comment" class="form-control "
                                 value="A new comment">
-                            <input class="btn btn-primary btn-block mt-2" type="submit"
+                            <input class="btn btn-info btn-block mt-2" type="submit"
                                 class="form-control" value="Submit comment">
                         </div>
                     </form>
@@ -69,12 +75,6 @@
                     <img class="img-comment rounded-2xl" src="{{c.user.img_url}}" alt="">
                 </a>
             </div>
-
-            {{else}}
-            <p class="font-italic">
-                <i class="fas fa-comment-slash text-lg"></i>
-                No comments for this post..</p>
-            {{/if}}
         </div>
     </div>
 </div>

@@ -3,6 +3,12 @@ const withAuth = require( '../utils/auth' );
 const router = require( 'express' ).Router();
 const {   User, Post, Reply, Category, Usercat } = require( '../models' );
 
+router.get( '/delete/:id', withAuth, async ( req, res ) => {
+  const post = await Post.destroy( {where:{id:req.params.id}} ).catch( e => console.log( e ) );
+  
+  res.redirect( req.header( 'Referrer' ) );
+});
+
 router.post('/h/reply/:id',withAuth, async (req, res) => {
   const new_reply = await Reply.create( {...req.body, user_id: req.session.user_id, post_id:req.params.id}  ).catch( e => console.log( e ) );
 
@@ -41,12 +47,13 @@ router.get( '/view/:id', withAuth, async ( req, res ) => {
   const user_m = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
   const user = user_m.get( { plain: true } );
   
-  // res.json( { 'message': 'success' } );
+  res.json( post );
   res.render( 'view_post', {
     post,
     user,
     logged_in: req.session.logged_in,
-    user_id: req.session.user_id
+    user_id: req.session.user_id,
+    post_id : req.params.id
   } );
 
 } );
