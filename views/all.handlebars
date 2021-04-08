@@ -1,6 +1,16 @@
-<h1>
-    <i class="fas fa-rss"></i>
-    All Posts</h1>
+<form action="/filter/" method="post">
+<div class="form-group mb-0">
+    <button type="submit" class="btn btn-outline-info btn-block font-weight-bold text-norm mb-0">Filter By Selected Categories</button>
+</div>
+<div class="form-group mt-0 p-0">
+  <select multiple class="form-control form-control-dark form-control-sm" name="cats" id="cats">
+{{#each cats as |c|}}
+    <option value="{{c.id}}">{{c.category_name}}</option>
+{{/each}}
+  </select>
+</div>
+</form>
+
 <nav aria-label="...">
     <ul class="pagination pagination-sm justify-content-center">
         <li class="page-item"><a class="page-link bg-dark text-light border-0" href="/?page=1&limit=10">1</a></li>
@@ -16,11 +26,10 @@
         <li class="page-item"><a class="page-link bg-dark text-light border-0" href="/?page=11&limit=10">11</a></li>
         <li class="page-item"><a class="page-link bg-dark text-light border-0" href="/?page=12&limit=10">12</a></li>
     </ul>
-</nav>
-<i>
-    <i class="fas fa-info-circle text-lg"></i>
-    Click on author's image or post title to view post individually on a new page...</i>
 
+</nav>
+
+<i><i class="fas fa-info-circle text-lg"></i>Click on author's image or post title to view post individually on a new page...</i>
 {{#each all as  |p|}}
 <div class="border-light border-med p-2">
 
