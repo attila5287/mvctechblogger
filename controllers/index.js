@@ -38,10 +38,11 @@ router.post('/filter', async (req, res) => {
   const cats = cats_models.map( c => c.get( {
     plain: true
   } ) );
-  
+
   res.render( 'all', {
     all,
     cats,
+    at_home : req.path == '/',
     logged_in: req.session.logged_in,
     user_id: req.session.user_id,
   } );
@@ -75,6 +76,7 @@ router.get( '/', async ( req, res ) => {
       cats,
     logged_in: req.session.logged_in,
     user_id: req.session.user_id,
+    at_home : req.path == '/',
     // pageCount,
     // itemCount,
     pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
