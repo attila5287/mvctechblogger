@@ -6,7 +6,7 @@ const post = require( './post' );
 router.use( '/post', post );
 const apiRoutes = require( './api' );
 router.use( '/api', apiRoutes );
-router.use( paginate.middleware( 5, 50 ) );
+router.use( paginate.middleware( 10, 50 ) );
 
 const {
   User,
