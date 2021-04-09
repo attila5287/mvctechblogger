@@ -1,12 +1,12 @@
 const paginate = require( 'express-paginate' );
+const router = require( 'express' ).Router();
+router.use( paginate.middleware( 5, 20 ) );
 const withAuth = require( '../utils/auth' );
 // const path = require( 'path' );
-const router = require( 'express' ).Router();
 const post = require( './post' );
 router.use( '/post', post );
 const apiRoutes = require( './api' );
 router.use( '/api', apiRoutes );
-router.use( paginate.middleware( 10, 50 ) );
 
 const {
   User,
@@ -147,9 +147,8 @@ router.get( '/signup', ( req, res ) => {
     res.redirect( '/' );
     return;
   }
-  // Otherwise, render the 'login' template
+  // Otherwise, render the 'signup' template
   res.render( 'signup' );
 } );
-
 
 module.exports = router;

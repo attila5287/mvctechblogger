@@ -7,7 +7,7 @@
   </select>
 </div>
 <div class="form-group mb-2">
-    <button type="submit" class="btn btn-outline-dark border-med btn-block font-weight-bold mb-0">Filter By Selected Categories</button>
+    <button type="submit" class="btn btn-outline-light btn-block font-weight-bold mb-0">Filter By Selected Categories</button>
 </div>
 </form>
 {{#if at_home}}
@@ -33,32 +33,31 @@
 
 <i><i class="fas fa-info-circle text-lg"></i>Click on author's image or post title to view post individually on a new page...</i>
 {{#each all as  |p|}}
-<div class="border-light border-med p-2">
 
-    <div class="media bg-body border-light rounded-4xl my-3 p-2">
-        <a class="d-flex align-self-center mr-3" href="/post/view/{{p.id}}">
-            <img class="img-author rounded-2xl bg-dark p-1" src="{{p.user.img_url}}" alt="">
+    <div class="media bg-body border-light rounded-4xl my-3 py-4 px-3">
+        <a class="d-flex align-self-center mr-3" href="/post/user/{{p.user_id}}">
+            <img class="img-author rounded-2xl bg-secondary p-1" src="{{p.user.img_url}}" alt="">
         </a>
-        <div class="media-body bg-light text-left rounded-4xl p-4">
+        <div class="media-body bg-light text-left rounded-4xl py-4 px-3">
             <a href="/post/view/{{p.id}}" class="post-title text-2xl text-dark"><i
                     class="fab fa-bimobject text-3xl mx-2"></i>{{p.title}}</a>
-            <hr class="my-0 border-secondary border-med">
             <p class="text-lg font-italic"><i class="fas fa-envelope mx-2"></i>{{p.content}}</p>
-            <p class="text-right my-0">
+            <p class="text-center my-0">
                 <i class="fas fa-tags m-2"> {{p.category.category_name}} </i>
                 <i class="fas fa-calendar-alt m-2"> {{format_date p.date_created}} </i>
                 <i class="fas fa-user m-2"> {{p.user.name}} </i>
             </p>
-            {{#if p.replies}}
+            <hr class="my-0 border-body">
             <button class="btn btn-outline-dark border-0 btn-block text-norm p-0" type="button"
                 data-toggle="collapse" data-target=".replies_for_post_{{p.id}}"
                 aria-expanded="false" aria-controls="replies_for_post_{{p.id}}">
                 <i class="fas fa-comments text-xl py-2"></i>
                 <i class="text-lg"> Show/Hide Comments</i>
             </button>
-            {{#each p.replies as |c|}}
             <div
-                class="media collapse show my-1 bg-silver rounded-2xl p-0 replies_for_post_{{p.id}}">
+                class="media collapse show my-1 rounded-2xl py-0 px-2 replies_for_post_{{p.id}}">
+            {{#if p.replies}}
+            {{#each p.replies as |c|}}
                 <div class="media-body font-italic text-sm p-2">
                     <i class="far fa-comment-dots text-xl fa-pull-left mt-2"></i>
                     {{c.comment}}
@@ -70,7 +69,6 @@
                 <a class="d-flex align-self-center  disabled">
                     <img class="img-comment rounded-circle" src="{{c.user.img_url}}" alt="">
                 </a>
-            </div>
             {{/each}}
 
             {{else}}
@@ -78,13 +76,16 @@
                 <i class="fas fa-comment-slash text-lg"></i>
                 No comments for this post..</p>
             {{/if}}
-            <div class="media collapse show my-3 replies_for_post_{{p.id}}">
-                <div class="media-body p-2">
+            </div>
+            <div class="media collapse show replies_for_post_{{p.id}}">
+                <div class="media-body">
                     <form action="/post/h/reply/{{p.id}}" method="post">
-                        <div class="form-group">
-                            <input type="text" name="comment" id="comment" class="form-control "
+                        <div class="form-group mb-0">
+                            <input type="text" name="comment" id="comment" class="form-control form-control-sm"
                                 value="A new comment">
-                            <input class="btn btn-info btn-block mt-2" type="submit"
+                        </div>
+                        <div class="form-group mt-0">
+                            <input class="btn btn-outline-info btn-block" type="submit"
                                 class="form-control" value="Submit comment">
                         </div>
                     </form>
@@ -95,12 +96,11 @@
             </div>
         </div>
     </div>
-</div>
-<p class="text-lg text-center px-0 mx-1 text-dark" href="https://mvctechblogger.herokuapp.com">
+<p class="text-lg text-center px-0 mx-1 text-secondary" href="https://mvctechblogger.herokuapp.com">
     <span
-        class="text-secondary border-top border-dark border-thk pt-0 font-weight-bold rounded-lg font-italic">Tech</span>
-    <i class="fab fa-bimobject mx-0 px-2 text-light bg-dark py-1 rounded-xl"></i><u
-        class="font-weight-bold">logger</u>
+        class="border-top border-secondary border-med pt-0 rounded-lg mr-0">Tech</span>
+    <i class="fab fa-bimobject mx-0 text-2xl pt-2"></i>
+    <u class="">logger</u>
 </p>
 
 {{/each}}

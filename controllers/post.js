@@ -29,7 +29,37 @@ router.post('/reply/:id',withAuth, async (req, res) => {
 });
 
 
-router.get( '/view/:id', withAuth, async ( req, res ) => {
+router.get( '/user/:id', async ( req, res ) => {
+
+  const post_m = await Post.findAll( {
+    include: {
+      all: true,
+      nested: true,
+    }
+    , where: {
+      user_id: req.params.id
+    }
+  }
+   ).catch( e => console.log(e));
+
+  const post = post_m.map(p=> p.get( {plain: true} ));
+
+  const user_m = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
+  const user = user_m.get( { plain: true } );
+  
+  // res.json( post );
+  res.render( 'view_post', {
+    post,
+    user,
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id,
+    post_id : req.params.id
+  } );
+
+} );
+
+
+router.get( '/view/:id', async ( req, res ) => {
 
   const post_m = await Post.findAll( {
     include: {
@@ -47,7 +77,7 @@ router.get( '/view/:id', withAuth, async ( req, res ) => {
   const user_m = await User.findByPk( req.session.user_id ).catch( e => console.log( e ) );
   const user = user_m.get( { plain: true } );
   
-  res.json( post );
+  // res.json( post );
   res.render( 'view_post', {
     post,
     user,
