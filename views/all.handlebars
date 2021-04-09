@@ -54,10 +54,9 @@
                 <i class="fas fa-comments text-xl py-2"></i>
                 <i class="text-lg"> Show/Hide Comments</i>
             </button>
-            <div
-                class="media collapse show my-1 rounded-2xl py-0 px-2 replies_for_post_{{p.id}}">
             {{#if p.replies}}
             {{#each p.replies as |c|}}
+            <div class="media collapse show my-1 rounded-2xl py-0 px-2 replies_for_post_{{p.id}}">
                 <div class="media-body font-italic text-sm p-2">
                     <i class="far fa-comment-dots text-xl fa-pull-left mt-2"></i>
                     {{c.comment}}
@@ -69,6 +68,7 @@
                 <a class="d-flex align-self-center  disabled">
                     <img class="img-comment rounded-circle" src="{{c.user.img_url}}" alt="">
                 </a>
+            </div>
             {{/each}}
 
             {{else}}
@@ -76,7 +76,6 @@
                 <i class="fas fa-comment-slash text-lg"></i>
                 No comments for this post..</p>
             {{/if}}
-            </div>
             <div class="media collapse show replies_for_post_{{p.id}}">
                 <div class="media-body">
                     <form action="/post/h/reply/{{p.id}}" method="post">
