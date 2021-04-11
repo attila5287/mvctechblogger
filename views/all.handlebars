@@ -1,15 +1,27 @@
-<form action="/filter/" method="post">
-<div class="form-group my-0">
-  <select multiple class="form-control form-control-dark form-control-lg" name="cats" id="cats">
-{{#each cats as |c|}}
-    <option value="{{c.id}}">{{c.category_name}}</option>
-{{/each}}
-  </select>
+<button class="btn btn-outline-primary btn-block btn-lg border-0" type="button" data-toggle="collapse" data-target="#filt_div" aria-expanded="false"
+        aria-controls="filt_div">
+        <i class="fas fa-list" aria-hidden="true"></i>
+    Show/Hide Categories to Filter
+</button>
+<div class="collapse show" id="filt_div">
+    <form action="/filter/" method="post">
+    <div class="form-group my-0">
+    <select multiple class="form-control form-control-dark form-control-lg" name="cats" id="cats" size="10">
+    {{#each cats as |c|}}
+        <option value="{{c.id}}">{{c.category_name}}</option>
+    {{/each}}
+    </select>
+    </div>
+    <div class="form-group mb-2">
+        <button type="submit" class="btn btn-outline-light btn-block font-weight-bold mb-0">
+        <i class="fas fa-filter" aria-hidden="true"></i>
+            Filter By Selected Categories
+
+        </button>
+    </div>
+    </form>
 </div>
-<div class="form-group mb-2">
-    <button type="submit" class="btn btn-outline-light btn-block font-weight-bold mb-0">Filter By Selected Categories</button>
-</div>
-</form>
+
 {{#if at_home}}
 <nav aria-label="pagination">
     <ul class="pagination pagination-sm justify-content-center">
@@ -78,6 +90,7 @@
             {{/if}}
             <div class="media collapse show replies_for_post_{{p.id}}">
                 <div class="media-body">
+
                     <form action="/post/h/reply/{{p.id}}" method="post">
                         <div class="form-group mb-0">
                             <input type="text" name="comment" id="comment" class="form-control form-control-sm"
@@ -88,6 +101,7 @@
                                 class="form-control" value="Submit comment">
                         </div>
                     </form>
+                    
                 </div>
                 <a class="d-flex disabled">
                     <img class="img-comment rounded-2xl" src="{{c.user.img_url}}" alt="">

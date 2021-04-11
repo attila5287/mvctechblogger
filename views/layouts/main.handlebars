@@ -150,8 +150,8 @@
               margin: 0px 0px 0px 0px;
           }
 
-          .nav-item .fas {
-              font-size: 1.25rem;
+          .nav-item  {
+              font-size: 1.5rem;
           }
 
           .text-ubu {
@@ -205,10 +205,10 @@
           }
       </style>
 
-      <body class="bg-body pb-5 mb-5">
+      <body class="bg-body py-5 my-2 ">
           <header>
               <nav
-                  class="navbar navbar-expand navbar-dark bg-info text-light text-xl px-1 m-0 py-0 shadow-lg">
+                  class="navbar navbar-expand navbar-dark bg-info text-light text-xl px-1 m-0 py-0 shadow-lg fixed-top">
                   <ul class="nav navbar-nav p-0 m-0">
                       <li class="nav-item text-xl py-0 mr-5">
                           <a class="nav-link px-0 mx-1 text-dark"
@@ -264,7 +264,12 @@
                       </li>
 
                       {{/if}}
-
+                      <li class="nav-item align-items-center">
+                          <a class="nav-link px-0 mx-1" href="https://github.com/attila5287/mvctechblogger">
+                              <i class="fab fa-github text-norm"></i>
+                              <span class="text-ubu text-reg text-norm font-weight-bold">Repo</span>
+                          </a>
+                      </li>
                   </ul>
               </nav>
           </header>

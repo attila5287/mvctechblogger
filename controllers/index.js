@@ -49,7 +49,7 @@ router.post( '/filter', async ( req, res ) => {
 
 router.get( '/', async ( req, res ) => {
 
-  const post_m = await Post.findAll( {
+  const post_m = await Post.findAndCountAll( {
     limit: req.query.limit,
     offset: req.skip,
     include: {
@@ -57,14 +57,15 @@ router.get( '/', async ( req, res ) => {
       nested: true,
     },
   } ).catch( e => console.log( e ) );
-  const all = post_m.map( p => p.get( {
-    plain: true
-  } ) );
+
   const itemCount = post_m.count;
   console.log( 'itemC :>> ', itemCount );
+  
+  const all = post_m.rows.map( p => p.get( {
+    plain: true
+  } ) );
   const pageCount = Math.ceil( post_m.count / req.query.limit );
   console.log( '\npagecount :>> ', pageCount );
-
 
   const cats_models = await Category.findAll().catch( e => console.log( e ) );
   const cats = cats_models.map( c => c.get( {
