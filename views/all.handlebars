@@ -6,14 +6,14 @@
 <div class="collapse show" id="filt_div">
     <form action="/filter/" method="post">
     <div class="form-group my-0">
-    <select multiple class="form-control form-control-dark form-control-lg" name="cats" id="cats" size="10">
+    <select multiple class="form-control form-control-dark form-control-lg rounded-4xl pl-5" name="cats" id="cats" size="10">
     {{#each cats as |c|}}
         <option value="{{c.id}}">{{c.category_name}}</option>
     {{/each}}
     </select>
     </div>
     <div class="form-group mb-2">
-        <button type="submit" class="btn btn-outline-light btn-block font-weight-bold mb-0">
+        <button type="submit" class="btn btn-outline-light btn-block font-weight-bold rounded-2xl mb-0">
         <i class="fas fa-filter" aria-hidden="true"></i>
             Filter By Selected Categories
 
