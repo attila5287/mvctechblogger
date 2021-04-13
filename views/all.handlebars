@@ -53,7 +53,11 @@
         <div class="media-body bg-light text-left rounded-4xl py-4 px-3">
             <a href="/post/view/{{p.id}}" class="post-title text-2xl text-dark"><i
                     class="fab fa-bimobject text-3xl mx-2"></i>{{p.title}}</a>
-            <p class="text-lg font-italic"><i class="fas fa-envelope mx-2"></i>{{p.content}}</p>
+            <p class="text-lg text-center font-italic">
+                <i class="fas fa-quote-left fa-pull-left"></i>
+                {{p.content}}
+                <i class="fas fa-quote-right fa-pull-right"></i>
+            </p>
             <p class="text-center my-0">
                 <i class="fas fa-tags m-2"> {{p.category.category_name}} </i>
                 <i class="fas fa-calendar-alt m-2"> {{format_date p.date_created}} </i>

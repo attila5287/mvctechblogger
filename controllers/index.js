@@ -7,7 +7,6 @@ const post = require( './post' );
 router.use( '/post', post );
 const apiRoutes = require( './api' );
 router.use( '/api', apiRoutes );
-
 const {
   User,
   Post,
@@ -15,6 +14,43 @@ const {
   Category,
   Usercat
 } = require( '../models' );
+
+router.get( '/', async ( req, res ) => {
+  const post_m = await Post.findAndCountAll( {
+    limit: req.query.limit,
+    offset: req.skip,
+    include: {
+      all: true,
+      nested: true,
+    },
+  } ).catch( e => console.log( e ) );
+
+  const itemCount = post_m.count;
+  console.log( '\nitemC :>> ', itemCount );
+  
+  const all = post_m.rows.map( p => p.get( {
+    plain: true
+  } ) );
+
+  const pageCount = Math.ceil( post_m.count / req.query.limit );
+  console.log( '\npagecount :>> ', pageCount );
+
+  const cats_models = await Category.findAll().catch( e => console.log( e ) );
+  const cats = cats_models.map( c => c.get( {
+    plain: true
+  } ) );
+  // res.status(200).json(post_m);
+  res.render( 'all', {
+    all,
+    cats,
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id,
+    at_home: req.path == '/',
+    // pageCount,
+    // itemCount,
+    pages: paginate.getArrayPages( req )( 1, 14, req.query.page )
+  } );
+} );
 
 router.post( '/filter', async ( req, res ) => {
   console.log( req.body );
@@ -47,44 +83,7 @@ router.post( '/filter', async ( req, res ) => {
   } );
 } );
 
-router.get( '/', async ( req, res ) => {
-
-  const post_m = await Post.findAndCountAll( {
-    limit: req.query.limit,
-    offset: req.skip,
-    include: {
-      all: true,
-      nested: true,
-    },
-  } ).catch( e => console.log( e ) );
-
-  const itemCount = post_m.count;
-  console.log( 'itemC :>> ', itemCount );
-  
-  const all = post_m.rows.map( p => p.get( {
-    plain: true
-  } ) );
-  const pageCount = Math.ceil( post_m.count / req.query.limit );
-  console.log( '\npagecount :>> ', pageCount );
-
-  const cats_models = await Category.findAll().catch( e => console.log( e ) );
-  const cats = cats_models.map( c => c.get( {
-    plain: true
-  } ) );
-  // res.status(200).json(post_m);
-  res.render( 'all', {
-    all,
-    cats,
-    logged_in: req.session.logged_in,
-    user_id: req.session.user_id,
-    at_home: req.path == '/',
-    // pageCount,
-    // itemCount,
-    pages: paginate.getArrayPages( req )( 3, pageCount, req.query.page )
-  } );
-} );
-
-router.get( '/dashboard/:id', async ( req, res ) => {
+router.get( '/dashboard/:id', withAuth, async ( req, res ) => {
 
   const user_model = await User.findByPk( req.params.id, {
     include: {
